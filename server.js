@@ -12,7 +12,6 @@ const mecanicoOS = require("./src/route/mecanicoOS.route.js")(router);
 const veiculo = require("./src/route/veiculo.route.js")(router);
 const gestor = require("./src/route/gestor.route.js")(router);
 
-
 var app = express();
 var bodyParser = require("body-parser");
 
@@ -35,8 +34,7 @@ app.use("/api/laudo", laudo);
 app.use("/api/os", os);
 app.use("/api/certificado", certificado);
 app.use("/api/mecanicoOS", mecanicoOS);
-app.use('/api/veiculo', veiculo)
-app.use('/api/gestor', gestor);
-
+app.use("/api/veiculo", veiculo);
+app.use("/api/gestor", gestor);
 
 app.listen(3306);

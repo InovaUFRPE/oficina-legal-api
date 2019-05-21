@@ -1,3 +1,4 @@
 {
-    "eslint.enable": true
+  "python.pythonPath": "c:/python27/python.exe",
+  "eslint.enable": true
 }
