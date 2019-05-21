@@ -3,11 +3,11 @@ module.exports = function(router) {
 
 	router.post("/api/usuario", Usuario.create);
 
-	router.get("/api/usuario/:login/:senha", Usuario.findAll);
+	router.get("/:login/:senha", Usuario.findAll);
 
-	router.post("/api/usuario/login", Usuario.login);
+	router.post("/login", Usuario.login);
 
-	router.put('/api/usuario/disable/:id', Usuario.disable); 
+	router.put('/disable/:id', Usuario.disable); 
 
 	router.put("/api/usuario/:idUsuario", Usuario.update);
 
