@@ -39,16 +39,17 @@ exports.update = async function(req, res) {
 	}
 };
 exports.findAll = (req, res) => {
-	Oficina.findAll({}).then(oficina => {
-		res.status(201);
-		res.send(oficina);
-	});
+    Oficina.findAll({
+        }).then(oficina => {
+            res.status(201)
+            res.send(oficina)
+        });
 };
-exports.getOficinaByCidade = async function(req, res) {
+exports.getOficinaByCidade = async function(req,res){
 	const cidade = req.params.cidade;
 	try {
-		const oficina = await Oficina.findAll({ where: { cidade: cidade } });
-		if (oficina.length > 0) {
+		const oficina = await Oficina.findAll({where : {cidade:cidade}});
+		if (oficina.length>0) {
 			res.status(200).send(oficina);
 		} else {
 			res.status(400).send("Não há oficinas na sua região");
@@ -56,4 +57,5 @@ exports.getOficinaByCidade = async function(req, res) {
 	} catch (err) {
 		res.status(500).send(err);
 	}
+
 };
