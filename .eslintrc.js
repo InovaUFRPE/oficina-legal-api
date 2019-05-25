@@ -13,7 +13,7 @@ module.exports = {
 		ecmaVersion: 2018
 	},
 	rules: {
-		indent: ["error", "tab"],
+		indent: ["error", "space"],
 		"linebreak-style": ["error", "windows"],
 		quotes: ["error", "double"],
 		semi: ["error", "always"],
@@ -21,7 +21,7 @@ module.exports = {
 		"no-restricted-syntax": [
 			"error",
 			{
-				"selector":
+				selector:
 					"CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
 				message: "Unexpected property on console object was called"
 			}
