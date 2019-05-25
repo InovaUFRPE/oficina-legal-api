@@ -1,9 +1,10 @@
 var events = require("events");
+const env = require("../config/.env");
 var eventEmitter = new events.EventEmitter();
 const db = require("../config/db.config.js");
 const Oficina = db.oficina;
 const googleMapsClient = require("@google/maps").createClient({
-	key: "AIzaSyBhntuU8NDLx8ZoIIfxnNRXaziGPvtEB6s"
+	key: env.cloudApiKey
 });
 
 exports.create = async function(req, res) {
