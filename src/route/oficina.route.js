@@ -12,5 +12,7 @@ module.exports = function(router) {
 
 	router.get('/findAll', Oficina.findAll);
 
+	router.get('/geocode/:id', Oficina.getOficinaGeocodeById);
+
 	return router;
 };

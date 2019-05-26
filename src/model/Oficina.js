@@ -14,6 +14,12 @@ module.exports = (sequelize, Sequelize) => {
         },
         bairro: {
             type: Sequelize.STRING(25)
+        },
+        latitude: {
+            type: Sequelize.DOUBLE
+        },
+        longitude: {
+            type: Sequelize.DOUBLE
         }
     },
     {
