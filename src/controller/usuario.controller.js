@@ -1,8 +1,11 @@
 const db = require("../config/db.config.js");
+var jwt = require('jsonwebtoken');
 const Usuario = db.usuario;
 const Cliente = db.cliente;
 const Mecanico = db.Mecanico;
 const Gestor = db.Gestor;
+require("dotenv-safe").load();
+
 
 exports.create = async function(req, res) {
 	const profileData = req.body;
@@ -33,18 +36,9 @@ exports.findAll = async function(req, res) {
 exports.login = async function(req, res) {
 	const login = req.body.login;
 	const senha = req.body.senha;
+	console.log(login, senha, "aqui entrou");
 	const user = await Usuario.findOne({
-		where: { login: login },
-		include: [
-			{
-				model: Cliente,
-				required: false
-			} /*,
-			{
-				model : Mecanico,
-				required: false
-			}*/
-		]
+		where: { login: login }
 	});
 	if (!user) {
 		return res.status(404).send({ error: "Usuário não cadastrado." });
@@ -52,8 +46,18 @@ exports.login = async function(req, res) {
 	if (senha != user.senha) {
 		return res.status(400).send({ error: "Senha inválida." });
 	}
-	res.status(200).send(user);
-}
+	if (!user.ativo){
+		return res.status(400).send({ error: "Usuário desativado."});
+	}
+	//auth ok
+	const id = user.idUsuario;
+	console.log(id)
+    var token = jwt.sign({ id }, process.env.SECRET, {
+      expiresIn: 86400 // tempo em segundos (1 dia)
+    });
+    res.status(200).send({ auth: true, token: token, user: {
+		id: user.idUsuario, login: user.login, email: user.email} });
+};
 exports.update = async function(req,res) {
 		const idUsuario = req.params.idUsuario;
 		Usuario.update( { login: req.body.login, senha: req.body.senha, email: req.body.email, ativo: req.body.ativo, }, 

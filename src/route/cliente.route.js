@@ -1,7 +1,7 @@
 module.exports = function(router) {
 	const cliente = require("../controller/cliente.controller.js");
 
-	router.post("/api/cliente/", cliente.create);
+	router.post("/register", cliente.create);
 
 	router.get("/api/Cliente/:clienteId", cliente.findByPk);
 

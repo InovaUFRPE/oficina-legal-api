@@ -1,7 +1,9 @@
 module.exports = function(router) {
     const Veiculo =  require('../controller/veiculo.controller.js');
+    const verifyJWT = require("../config/user.auth.js");
 
-    router.post('/api/veiculo', Veiculo.create);
+
+    router.post('/add', verifyJWT, Veiculo.create);
 
     return router;
 }

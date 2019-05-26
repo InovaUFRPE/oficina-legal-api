@@ -1,14 +1,15 @@
 module.exports = function(router) {
     const gestor = require('../controller/gestor.controller.js');
+    const verifyJWT = require("../config/user.auth.js");
 
     //create new gestor
-    router.post('/api/gestor', gestor.create);
+    router.post('/create', gestor.create);
     //retrive all gestors
-    router.get('/api/gestor', gestor.findAll);
+    router.get('/findAll', gestor.findAll);
     //retrive gestor por id
-    router.get('/api/gestor/:id' , gestor.findByPk);
+    router.get('/:id' , gestor.findByPk);
     // Update gestor with Id
-    router.put('/api/gestor/:id', gestor.update);
+    router.put('/:id', verifyJWT, gestor.update);
 
     return router;
 }

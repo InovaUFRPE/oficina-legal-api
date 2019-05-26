@@ -5,7 +5,7 @@ module.exports = function(router) {
 
 	router.put("/api/mecanico/:id", Mecanico.update);
 	
-	router.get('/api/mecanico/:id' , mecanico.findByPk);
+	router.get('/api/mecanico/:id' , Mecanico.findByPk);
 
 	router.delete("/api/mecanico/:id", Mecanico.delete);
 
