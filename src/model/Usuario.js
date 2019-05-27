@@ -1,4 +1,4 @@
-  module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, Sequelize) => {
 	const usuario = sequelize.define('usuario', {
 	  login: {
 		type: Sequelize.STRING(45)
@@ -10,7 +10,10 @@
 		type: Sequelize.STRING(45)
 		},
 		ativo: {
-		type: Sequelize.BOOLEAN
+		type: Sequelize.BOOLEAN,
+		validate: {
+			notNull: true
+		  }
 		},
 		idUsuario: {
 		type: Sequelize.INTEGER,

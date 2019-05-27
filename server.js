@@ -11,7 +11,7 @@ const certificado = require("./src/route/certificado.route.js")(router);
 const mecanicoOS = require("./src/route/mecanicoOS.route.js")(router);
 const veiculo = require("./src/route/veiculo.route.js")(router);
 const gestor = require("./src/route/gestor.route.js")(router);
-
+const agendamento = require("./src/route/agendamento.route.js")(router);
 
 var app = express();
 var bodyParser = require("body-parser");
@@ -37,6 +37,6 @@ app.use("/api/certificado", certificado);
 app.use("/api/mecanicoOS", mecanicoOS);
 app.use('/api/veiculo', veiculo)
 app.use('/api/gestor', gestor);
-
+app.use("/api/agendamento",agendamento);
 
 app.listen(3306);

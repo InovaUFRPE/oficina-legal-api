@@ -3,12 +3,18 @@ module.exports = (sequelize, Sequelize) => {
 		idOS: {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
-			foreignKey: true
+			foreignKey: true,
+            validate: {
+                notNull: true
+              }
 		},
 		idMecanico: {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
-			foreignKey: true
+			foreignKey: true,
+            validate: {
+                notNull: true
+              }
 		}
 	},
 	{

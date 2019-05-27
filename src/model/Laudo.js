@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
 			primaryKey: true
 		},
 		descricao: {
-			type: Sequelize.STRING
+			type: Sequelize.TEXT
 		},
 		data_hora: {
 			type: Sequelize.DATE,
@@ -15,6 +15,9 @@ module.exports = (sequelize, Sequelize) => {
 		idVeiculo: {
 			type: Sequelize.INTEGER,
 			foreignKey: true,
+            validate: {
+                notNull: true
+              }
 
 		}
 	},
