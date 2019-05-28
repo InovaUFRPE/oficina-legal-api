@@ -23,6 +23,7 @@ db.laudo = require("../model/Laudo.js")(sequelize, Sequelize);
 db.os = require("../model/os.js")(sequelize, Sequelize);
 db.veiculo = require('../model/Veiculo')(sequelize, Sequelize);
 db.gestor = require('../model/Gestor.js')(sequelize, Sequelize);
+db.agendamento = require('../model/Agendamento.js')(sequelize, Sequelize);
 
 db.mecanicoOS.hasOne(db.os, { foreignKey: "id" });
 db.mecanicoOS.hasOne(db.mecanico, { foreignKey: "id" });
@@ -41,5 +42,11 @@ db.veiculo.belongsTo(db.cliente,{foreignKey: "idCliente"})
 
 db.oficina.hasOne(db.gestor,{foreignKey: 'idOficina'})
 db.gestor.belongsTo(db.oficina,{foreignKey: 'idOficina'}) 
+
+db.agendamento.belongsTo(db.veiculo,{foreignKey:'idVeiculo'})
+db.veiculo.hasOne(db.agendamento,{foreignKey:"id"})
+
+db.agendamento.belongsTo(db.oficina,{foreignKey:'idVeiculo'})
+db.oficina.hasOne(db.veiculom,{foreignKey:"id"})
 
 module.exports = db;
