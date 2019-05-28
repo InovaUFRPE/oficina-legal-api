@@ -6,26 +6,41 @@ module.exports = (sequelize, Sequelize) => {
 			primaryKey: true
 		},
 		nome: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(45),
+            validate: {
+                notNull: true
+              }
 		},
 		cpf: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(11),
+            validate: {
+                notNull: true
+              }
 		},
 		bairro: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(20)
 		},
 		cep: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(8),
+            validate: {
+                notNull: true
+              }
 		},
 		endereco: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(45),
+            validate: {
+                notNull: true
+              }
 		},
 		complemento: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(20)
 		},
 		idUsuario: {
 			type: Sequelize.INTEGER,
-			foreignKey: true
+			foreignKey: true,
+            validate: {
+                notNull: true
+              }
 		}
 	},
 	{

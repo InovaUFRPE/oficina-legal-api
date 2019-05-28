@@ -6,14 +6,20 @@ module.exports = (sequelize, Sequelize) => {
 			primaryKey: true
 		},
 		descricao: {
-			type: Sequelize.STRING
+			type: Sequelize.TEXT,
+            validate: {
+                notNull: true
+              }
 		},
 		url: {
-			type: Sequelize.STRING
+			type: Sequelize.TEXT
 		},
 		idMecanico: {
 			type: Sequelize.INTEGER,
-			foreignKey: true
+			foreignKey: true,
+            validate: {
+                notNull: true
+              }
 		}
 	},
 	{
