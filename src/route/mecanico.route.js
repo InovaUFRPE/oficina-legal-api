@@ -1,13 +1,13 @@
 module.exports = function(router) {
 	const Mecanico = require("../controller/mecanico.controller.js");
 
-	router.post("/create", Mecanico.create);
+	router.post("/api/mecanico", Mecanico.create);
 
-	router.put("/:id", Mecanico.update);
+	router.put("/api/mecanico/:id", Mecanico.update);
 	
-	router.get('/:id' , Mecanico.findByPk);
+	router.get('/api/mecanico/:id' , Mecanico.findByPk);
 
-	router.delete("/:id", Mecanico.delete);
+	router.delete("/api/mecanico/:id", Mecanico.delete);
 
 
 	return router;
