@@ -3,7 +3,7 @@ module.exports = function(router) {
     const verifyJWT = require("../config/user.auth.js");
 
 
-    router.post('/add', verifyJWT, Veiculo.create);
+    router.post('/create', verifyJWT, Veiculo.create);
 
     return router;
 }

@@ -1,15 +1,17 @@
 module.exports = function(router) {
 	const cliente = require("../controller/cliente.controller.js");
 
-	router.post("/register", cliente.create);
+	router.post("/create", cliente.create);
 
-	router.get("/api/Cliente/:clienteId", cliente.findByPk);
+	router.get("/:clienteId", cliente.findByPk);
 
-	router.post('/api/cliente', cliente.findOficina);
+	router.get("/usuario/:id", cliente.findByIdUsuario)
 
-	router.get('/api/cliente/', cliente.findAll);
+	//router.post('/api/cliente', cliente.findOficina);
 
-	router.put('/api/cliente/:id', cliente.update);
+	router.get('/findAll', cliente.findAll);
+
+	router.put('/:id', cliente.update);
 
 	return router;
 };
