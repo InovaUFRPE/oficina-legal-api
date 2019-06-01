@@ -13,6 +13,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.agendamento = require("../model/Agendamento.js")(sequelize, Sequelize);
 db.certificado = require("../model/Certificado.js")(sequelize, Sequelize);
 db.cliente = require("../model/Cliente.js")(sequelize, Sequelize);
 db.mecanicoOS = require("../model/MecanicoOS.js")(sequelize, Sequelize);
@@ -23,6 +24,8 @@ db.laudo = require("../model/Laudo.js")(sequelize, Sequelize);
 db.os = require("../model/os.js")(sequelize, Sequelize);
 db.veiculo = require('../model/Veiculo')(sequelize, Sequelize);
 db.gestor = require('../model/Gestor.js')(sequelize, Sequelize);
+
+db.agendamento.hasOne(db.veiculo, { foreignKey:"id"});
 
 db.mecanicoOS.hasOne(db.os, { foreignKey: "id" });
 db.mecanicoOS.hasOne(db.mecanico, { foreignKey: "id" });
