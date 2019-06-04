@@ -21,7 +21,7 @@ db.usuario = require("../model/Usuario.js")(sequelize, Sequelize);
 db.mecanico = require("../model/Mecanico.js")(sequelize, Sequelize);
 db.oficina = require("../model/Oficina.js")(sequelize, Sequelize);
 db.laudo = require("../model/Laudo.js")(sequelize, Sequelize);
-db.os = require("../model/os.js")(sequelize, Sequelize);
+db.os = require("../model/OS.js")(sequelize, Sequelize);
 db.veiculo = require('../model/Veiculo')(sequelize, Sequelize);
 db.gestor = require('../model/Gestor.js')(sequelize, Sequelize);
 
