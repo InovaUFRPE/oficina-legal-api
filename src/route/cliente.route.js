@@ -11,6 +11,8 @@ router.get("/:clienteId", cliente.findByPk);
 
 router.get('/findAll', cliente.findAll);
 
+router.get('/:idCliente/veiculos', cliente.getVeiculosByCliente);
+
 router.put('/update/:id', cliente.update);
 
 module.exports = router;

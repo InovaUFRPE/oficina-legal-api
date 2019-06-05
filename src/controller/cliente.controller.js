@@ -1,6 +1,7 @@
 const db = require("../config/db.config.js");
 const Cliente = db.cliente;
 const Usuario = db.usuario;
+const Veiculo = db.veiculo;
 
 exports.create = async function(req, res) {
 	const profileData = req.body;
@@ -34,7 +35,7 @@ exports.findByIdUsuario = async (req, res) => {
 	if (cliente) {
 		return res.status(201).send(cliente);
 	}
-	return res.status(400).send({ error: "Cliente não encontrado" });
+	return res.status(400).send({ alert: "Cliente não encontrado" });
 };
 exports.findAll = (req, res) => {
 	Cliente.findAll({
@@ -63,3 +64,19 @@ exports.update = (req, res) => {
           ).then(() => {res.send("Atualizado com Sucesso " + id + " Cliente Atualizado " + idUsuario)});
 	});
 };
+
+exports.getVeiculosByCliente = async (req, res) => {
+	try {
+		const veiculos = await Veiculo.findAll({
+				where: { idCliente: req.params.idCliente},
+				attributes: ['id','modelo','ano','renavam','placa']
+		});
+		if (veiculos){
+				res.status(200).send(veiculos);
+		} else {
+				res.status(200).send({ alert: "Sem veículos cadastrados." });
+		}
+	} catch (err) {
+			res.status(400).send(err);
+	};
+}
