@@ -1,14 +1,14 @@
-module.exports = function(router) {
-	const Mecanico = require("../controller/mecanico.controller.js");
+var express = require('express');
+var router = express.Router();
 
-	router.post("/api/mecanico", Mecanico.create);
+const Mecanico = require("../controller/mecanico.controller.js");
 
-	router.put("/api/mecanico/:id", Mecanico.update);
-	
-	router.get('/api/mecanico/:id' , Mecanico.findByPk);
+router.post("/api/mecanico", Mecanico.create);
 
-	router.delete("/api/mecanico/:id", Mecanico.delete);
+router.put("/api/mecanico/:id", Mecanico.update);
 
+router.get('/api/mecanico/:id' , Mecanico.findByPk);
 
-	return router;
-};
+router.delete("/api/mecanico/:id", Mecanico.delete);
+
+module.exports = router;

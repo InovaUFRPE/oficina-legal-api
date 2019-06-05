@@ -1,15 +1,16 @@
-module.exports = function(router) {
-	const cliente = require("../controller/cliente.controller.js");
+var express = require('express');
+var router = express.Router();
 
-	router.post("/register", cliente.create);
+const cliente = require("../controller/cliente.controller.js");
 
-	router.get("/api/Cliente/:clienteId", cliente.findByPk);
+router.post("/register", cliente.create);
 
-	router.post('/api/cliente', cliente.findOficina);
+router.get("/:clienteId", cliente.findByPk);
 
-	router.get('/api/cliente/', cliente.findAll);
+/*router.post('/api/cliente', cliente.findOficina);*/
 
-	router.put('/api/cliente/:id', cliente.update);
+router.get('/findAll', cliente.findAll);
 
-	return router;
-};
+router.put('/update/:id', cliente.update);
+
+module.exports = router;

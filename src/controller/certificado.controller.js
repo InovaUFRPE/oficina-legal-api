@@ -40,7 +40,7 @@ exports.findById = async function(req, res) {
 		if (certificado) {
 			res.status(200).send(certificado);
 		}
-		res.status(400).send("Certificado não encontrado");
+		res.status(400).send({ alert : "Certificado não encontrado"});
 		return true;
 	} catch (err) {
 		res.status(500).send(err);

@@ -1,15 +1,16 @@
-module.exports = function(router) {
-	const Usuario = require("../controller/usuario.controller.js");
+var express = require('express');
+var router = express.Router();
 
-	router.post("/api/usuario", Usuario.create);
+const Usuario = require("../controller/usuario.controller.js");
 
-	router.get("usuario/:login/:senha", Usuario.findAll);
+router.post('/create', Usuario.create);
 
-	router.post("/login", Usuario.login);
+router.get('/:login/:senha', Usuario.findAll);
 
-	router.put('/disable/:id', Usuario.disable); 
+router.post('/login', Usuario.login);
 
-	router.put("/api/usuario/:idUsuario", Usuario.update);
+router.put('/disable/:id', Usuario.disable); 
 
-	return router;
-};
+router.put('/update/:idUsuario', Usuario.update);
+
+module.exports = router;

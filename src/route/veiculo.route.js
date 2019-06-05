@@ -1,9 +1,10 @@
-module.exports = function(router) {
-    const Veiculo =  require('../controller/veiculo.controller.js');
-    const verifyJWT = require("../config/user.auth.js");
+var express = require('express');
+var router = express.Router();
+
+const Veiculo =  require('../controller/veiculo.controller.js');
+const verifyJWT = require("../config/user.auth.js");
 
 
-    router.post('/add', verifyJWT, Veiculo.create);
+router.post('/add', verifyJWT, Veiculo.create);
 
-    return router;
-}
+module.exports = router;
