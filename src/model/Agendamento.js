@@ -6,16 +6,10 @@ module.exports = (sequelize, Sequelize) => {
         idVeiculo:{
             type: Sequelize.INTEGER,
             foreignkey: true,
-            validate: {
-                allowNull: false
-              }
         },
         idOficina:{
             type: Sequelize.INTEGER,
             foreignkey: true,
-            validate: {
-                allowNull: false
-              }
         }
 
     },

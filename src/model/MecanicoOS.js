@@ -4,17 +4,11 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			foreignKey: true,
-            validate: {
-							allowNull: false
-              }
 		},
 		idMecanico: {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			foreignKey: true,
-            validate: {
-							allowNull: false
-              }
 		}
 	},
 	{

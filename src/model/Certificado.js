@@ -7,9 +7,6 @@ module.exports = (sequelize, Sequelize) => {
 		},
 		descricao: {
 			type: Sequelize.TEXT,
-            validate: {
-                allowNull: false
-              }
 		},
 		url: {
 			type: Sequelize.TEXT
@@ -17,9 +14,6 @@ module.exports = (sequelize, Sequelize) => {
 		idMecanico: {
 			type: Sequelize.INTEGER,
 			foreignKey: true,
-            validate: {
-                allowNull: false
-              }
 		}
 	},
 	{

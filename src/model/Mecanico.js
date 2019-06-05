@@ -7,35 +7,20 @@ module.exports = (sequelize, Sequelize) => {
 		},
 		curriculo: {
 			type: Sequelize.TEXT,
-            validate: {
-							allowNull: false
-              }
 		},
 		nome: {
 			type: Sequelize.STRING(45),
-            validate: {
-							allowNull: false
-              }
 		},
 		cpf: {
 			type: Sequelize.STRING(11),
-            validate: {
-							allowNull: false
-              }
 		},
 		idUsuario: {
 			type: Sequelize.INTEGER,
 			foreignKey: true,
-            validate: {
-							allowNull: false
-              }
 		},
 		idOficina: {
 			type: Sequelize.INTEGER,
 			foreignKey: true,
-            validate: {
-							allowNull: false
-              }
 		}
 	},
 	{
