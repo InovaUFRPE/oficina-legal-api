@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
 			primaryKey: true,
 			foreignKey: true,
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 		idMecanico: {
@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
 			primaryKey: true,
 			foreignKey: true,
             validate: {
-                notNull: true
+							allowNull: false
               }
 		}
 	},

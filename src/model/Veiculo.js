@@ -15,7 +15,7 @@ module.exports = (sequelize, Sequelize) => {
         idCliente:{
             type: Sequelize.INTEGER,
             validate: {
-                notNull: true
+                allowNull: false
               }
         }
     },{

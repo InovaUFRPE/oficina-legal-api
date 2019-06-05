@@ -3,13 +3,13 @@ module.exports = (sequelize, Sequelize) => {
         razaoSocial: {
             type: Sequelize.STRING(45),
             validate: {
-                notNull: true
+                allowNull: false
               }
         },
         endereco: {
             type: Sequelize.STRING(45),
             validate: {
-                notNull: true
+                allowNull: false
               }
         },
         complemento:{
@@ -18,13 +18,13 @@ module.exports = (sequelize, Sequelize) => {
         cidade: {
             type: Sequelize.STRING(45),
             validate: {
-                notNull: true
+                allowNull: false
               }
         },
         bairro: {
             type: Sequelize.STRING(25),
             validate: {
-                notNull: true
+                allowNull: false
               }
         },
         latitude: {

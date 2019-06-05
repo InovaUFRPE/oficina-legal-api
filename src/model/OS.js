@@ -8,26 +8,26 @@ module.exports = (sequelize, Sequelize) => {
 		descricao: {
 			type: Sequelize.TEXT,
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 		situacao: {
 			type: Sequelize.STRING(20),
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 		idLaudo: {
 			type: Sequelize.INTEGER,
 			foreignKey: true,
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 		idOficina: {
 			type: Sequelize.INTEGER,
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 	},
