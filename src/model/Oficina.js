@@ -8,24 +8,15 @@ module.exports = (sequelize, Sequelize) => {
         },
         endereco: {
             type: Sequelize.STRING(45),
-            validate: {
-                allowNull: false
-              }
         },
         complemento:{
             type: Sequelize.STRING(25)
         },
         cidade: {
             type: Sequelize.STRING(45),
-            validate: {
-                allowNull: false
-              }
         },
         bairro: {
             type: Sequelize.STRING(25),
-            validate: {
-                allowNull: false
-              }
         },
         latitude: {
             type: Sequelize.DOUBLE

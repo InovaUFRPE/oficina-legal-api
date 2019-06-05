@@ -15,10 +15,6 @@ module.exports = (sequelize, Sequelize) => {
 		idVeiculo: {
 			type: Sequelize.INTEGER,
 			foreignKey: true,
-            validate: {
-							allowNull: false
-              }
-
 		}
 	},
 	{
