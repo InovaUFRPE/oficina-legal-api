@@ -1,13 +1,13 @@
-module.exports = function(router) {
-	const Certificado = require("../controller/certificado.controller.js");
+var express = require('express');
+var router = express.Router();
 
-	router.post("/create", Certificado.create);
+const Certificado = require("../controller/certificado.controller.js");
 
-	router.get("/:id", Certificado.findById);
+router.post('/create', Certificado.create);
 
-	router.put("/:id", Certificado.update);
+router.get('/:id', Certificado.findById);
+
+router.put('/update/:id', Certificado.update);
 
 
-
-	return router;
-};
+module.exports = router;

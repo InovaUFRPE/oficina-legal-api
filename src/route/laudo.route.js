@@ -1,8 +1,9 @@
-module.exports = function(router) {
-	const Laudo = require("../controller/laudo.controller.js");
-	const verifyJWT = require("../config/user.auth.js");
+var express = require('express');
+var router = express.Router();
 
-	router.post("/create", verifyJWT, Laudo.create);
+const Laudo = require("../controller/laudo.controller.js");
+const verifyJWT = require("../config/user.auth.js");
 
-	return router;
-};
+router.post('/create', verifyJWT, Laudo.create);
+
+module.exports = router;
