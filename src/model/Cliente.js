@@ -8,13 +8,13 @@ module.exports = (sequelize, Sequelize) => {
 		nome: {
 			type: Sequelize.STRING(45),
             validate: {
-                notNull: true
+                allowNull: false
               }
 		},
 		cpf: {
 			type: Sequelize.STRING(11),
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 		bairro: {
@@ -23,13 +23,13 @@ module.exports = (sequelize, Sequelize) => {
 		cep: {
 			type: Sequelize.STRING(8),
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 		endereco: {
 			type: Sequelize.STRING(45),
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 		complemento: {
@@ -39,7 +39,7 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.INTEGER,
 			foreignKey: true,
             validate: {
-                notNull: true
+							allowNull: false
               }
 		}
 	},

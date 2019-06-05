@@ -8,33 +8,33 @@ module.exports = (sequelize, Sequelize) => {
 		curriculo: {
 			type: Sequelize.TEXT,
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 		nome: {
 			type: Sequelize.STRING(45),
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 		cpf: {
 			type: Sequelize.STRING(11),
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 		idUsuario: {
 			type: Sequelize.INTEGER,
 			foreignKey: true,
             validate: {
-                notNull: true
+							allowNull: false
               }
 		},
 		idOficina: {
 			type: Sequelize.INTEGER,
 			foreignKey: true,
             validate: {
-                notNull: true
+							allowNull: false
               }
 		}
 	},

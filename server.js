@@ -39,4 +39,4 @@ app.use('/api/veiculo', veiculo)
 app.use('/api/gestor', gestor);
 app.use("/api/agendamento",agendamento);
 
-app.listen(3306);
+app.listen(6001);

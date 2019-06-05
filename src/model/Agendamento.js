@@ -1,10 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const Agendamento = sequelize.define("Agendamento",{
-        id:{
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primarykey: true
-        },
         data_hora:{
             type: Sequelize.DATE
         },
@@ -12,14 +7,14 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             foreignkey: true,
             validate: {
-                notNull: true
+                allowNull: false
               }
         },
         idOficina:{
             type: Sequelize.INTEGER,
             foreignkey: true,
             validate: {
-                notNull: true
+                allowNull: false
               }
         }
 

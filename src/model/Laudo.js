@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.INTEGER,
 			foreignKey: true,
             validate: {
-                notNull: true
+							allowNull: false
               }
 
 		}

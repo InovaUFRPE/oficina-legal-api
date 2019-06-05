@@ -3,13 +3,13 @@ module.exports = (sequelize, Sequelize) => {
         nome:{
             type: Sequelize.STRING(45),
             validate: {
-                notNull: true
+                allowNull: false
               }
         },
         cpf: {
             type: Sequelize.STRING(11),
             validate: {
-                notNull: true
+                allowNull: false
               }
         },
         id:{
@@ -20,13 +20,13 @@ module.exports = (sequelize, Sequelize) => {
         idUsuario: {
             type: Sequelize.INTEGER,
             validate: {
-                notNull: true
+                allowNull: false
               }
         },
         idOficina: {
             type: Sequelize.INTEGER,
             validate: {
-                notNull: true
+                allowNull: false
               }
         }
     },{

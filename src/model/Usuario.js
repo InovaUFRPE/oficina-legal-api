@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
 		ativo: {
 		type: Sequelize.BOOLEAN,
 		validate: {
-			notNull: true
+			allowNull: false
 		  }
 		},
 		idUsuario: {

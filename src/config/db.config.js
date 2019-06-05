@@ -1,4 +1,4 @@
-const env = require("./.env");
+const env = require("../config/.env");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(env.database, env.username, env.password, {
@@ -47,6 +47,6 @@ db.agendamento.belongsTo(db.veiculo,{foreignKey:'idVeiculo'})
 db.veiculo.hasOne(db.agendamento,{foreignKey:"id"})
 
 db.agendamento.belongsTo(db.oficina,{foreignKey:'idVeiculo'})
-db.oficina.hasOne(db.veiculom,{foreignKey:"id"})
+db.oficina.hasOne(db.veiculo,{foreignKey:"id"})
 
 module.exports = db;
