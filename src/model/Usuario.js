@@ -6,20 +6,18 @@ module.exports = (sequelize, Sequelize) => {
 	  senha: {
 		type: Sequelize.STRING(45)
 		},
-		email: {
+	email: {
 		type: Sequelize.STRING(45)
-		},
-		ativo: {
+	},
+	ativo: {
 		type: Sequelize.BOOLEAN,
-		validate: {
-			allowNull: false
-		  }
-		},
-		idUsuario: {
+		allowNull: false 
+	},
+	idUsuario: {
 		type: Sequelize.INTEGER,
 		primaryKey: true,
 		autoIncrement: true
-		}
+	}
 
 	},
 	{	

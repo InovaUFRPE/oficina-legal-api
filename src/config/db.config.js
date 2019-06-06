@@ -3,6 +3,7 @@ const env = require("./.env");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(env.database, env.username, env.password, {
 	host: env.host,
+	port: env.port,
 	dialect: env.dialect,
 	operatorsAliases: false,
 	timezone: "-03:00"
@@ -13,6 +14,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.adm = require("../model/Adm.js")(sequelize, Sequelize);
 db.certificado = require("../model/Certificado.js")(sequelize, Sequelize);
 db.cliente = require("../model/Cliente.js")(sequelize, Sequelize);
 db.mecanicoOS = require("../model/MecanicoOS.js")(sequelize, Sequelize);

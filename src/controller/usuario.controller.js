@@ -2,8 +2,9 @@ const db = require("../config/db.config.js");
 var jwt = require('jsonwebtoken');
 const Usuario = db.usuario;
 const Cliente = db.cliente;
-const Mecanico = db.Mecanico;
-const Gestor = db.Gestor;
+const Mecanico = db.mecanico;
+const Gestor = db.gestor;
+const Adm = db.adm;
 require("dotenv-safe").load();
 
 
@@ -125,3 +126,26 @@ exports.active = async function(req, res, next) {
 	  })
 	  .catch(next)
 };
+
+exports.getGestorOrAdm = async function(req, res){
+	try {
+		const gestor = await Gestor.findOne({
+			where: { idUsuario : req.params.id }
+		});
+		if (!gestor) {
+			const adm = await Adm.findOne({
+				where: {idUsuario: req.params.id}
+			});
+			if (adm){
+				return res.status(200).send({
+					tipo: "adm",
+					adm});
+			} return res.status(404).send({alert: "Não encontrado."});
+		} return res.status(200).send({
+			tipo: "gestor",
+			gestor});
+	} catch (err) {
+		console.log(err);
+		return res.status({error: err});
+	}
+}
