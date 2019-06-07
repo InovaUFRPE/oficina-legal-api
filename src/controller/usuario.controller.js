@@ -5,6 +5,7 @@ const Cliente = db.cliente;
 const Mecanico = db.mecanico;
 const Gestor = db.gestor;
 const Adm = db.adm;
+const Oficina = db.oficina;
 require("dotenv-safe").load();
 
 
@@ -25,10 +26,17 @@ exports.create = async function(req, res) {
 };
 exports.login = async function(req, res) {
 	const login = req.body.login;
+	const email = req.body.email;
 	const senha = req.body.senha;
-	const user = await Usuario.findOne({
-		where: { login: login }
-	});
+	var user;
+	if(login){
+		user = await Usuario.findOne({
+			where: { login: login }
+		});
+	} else {
+		user = await Usuario.findOne({
+			where: { email: email }
+	})};
 	if (!user) {
 		return res.status(404).send({ auth: false, alert: "Usuário não cadastrado." });
 	}
@@ -130,20 +138,31 @@ exports.active = async function(req, res, next) {
 exports.getGestorOrAdm = async function(req, res){
 	try {
 		const gestor = await Gestor.findOne({
-			where: { idUsuario : req.params.id }
+			attributes: ['nome', 'cpf', 'id'],
+			where: { idUsuario : req.params.id },
+			include: [ { 
+				model: Usuario,
+				required: true
+			}, {
+				model: Oficina,
+				 required: true
+			}, ]
 		});
 		if (!gestor) {
 			const adm = await Adm.findOne({
-				where: {idUsuario: req.params.id}
+				attributes: ['nome', 'cpf', 'id'],
+				where: {idUsuario: req.params.id},
+				include: [ { 
+					model: Usuario,
+					required: true
+				 } ]
 			});
 			if (adm){
-				return res.status(200).send({
-					tipo: "adm",
-					adm});
+				adm.usuario.tipo = "04";
+				return res.status(200).send({adm});
 			} return res.status(404).send({alert: "Não encontrado."});
-		} return res.status(200).send({
-			tipo: "gestor",
-			gestor});
+		} 
+		return res.status(200).send({tipo: "03", gestor});
 	} catch (err) {
 		console.log(err);
 		return res.status({error: err});
