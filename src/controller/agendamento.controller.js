@@ -1,4 +1,5 @@
 const db = require('../config/db.config.js');
+
 const Agendamento = db.agendamento;
 const Oficina = db.oficina;
 const Veiculo = db.veiculo;

@@ -7,16 +7,16 @@ module.exports = (sequelize, Sequelize) => {
               }
         },
         endereco: {
-            type: Sequelize.STRING(45),
+            type: Sequelize.STRING(45)
         },
         complemento:{
             type: Sequelize.STRING(25)
         },
         cidade: {
-            type: Sequelize.STRING(45),
+            type: Sequelize.STRING(45)
         },
         bairro: {
-            type: Sequelize.STRING(25),
+            type: Sequelize.STRING(25)
         },
         latitude: {
             type: Sequelize.DOUBLE
