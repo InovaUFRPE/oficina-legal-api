@@ -7,6 +7,6 @@ router.post('/create', agendamento.create);
 
 router.get('/findAll', agendamento.findAll);
 
-router.get('/oficina/:idOficina', agendamento.findByOficina);
+router.get('/oficina/:idOficina', agendamento.findByOficinaOrder);
 
 module.exports = router;
