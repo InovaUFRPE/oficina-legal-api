@@ -27,12 +27,12 @@ exports.create = async function(req, res){
 	};
 };
 
- exports.findByOficina = async function(req, res){
+exports.findByOficina = async function(req, res){
     try {
         const agendamentos = await Agendamento.findAll({
             where: { idOficina: req.params.idOficina},
             attributes: ['id','data_hora'],
-            include: [ { model: Veiculo } ]
+            include: [ { model: Veiculo , include:[Cliente]} ]
         });
         res.status(200).send(agendamentos)
         
@@ -55,14 +55,14 @@ exports.findAll = async function(req, res) {
     }
 }
 
-exports.findByOficinaOrder = async function(req, res){
+ exports.findByOficinaOrder = async function(req, res){
     ordem = req.query.orderBy
     try {
         if(!ordem){
             const agendamentos = await Agendamento.findAll({
                 where: { idOficina: req.params.idOficina},
                 attributes: ['id','data_hora'],
-                include: [ { model: Veiculo } ]
+                include: [  { model: Veiculo , include:[Cliente]} ]
             });
             res.status(200).send(agendamentos)
 
@@ -70,7 +70,7 @@ exports.findByOficinaOrder = async function(req, res){
             const agendamentos = await Agendamento.findAll({
                 where: { idOficina: req.params.idOficina},
                 attributes: ['id','data_hora'],
-                include: [ { model: Veiculo } ],
+                include: [ { model: Veiculo , include:[Cliente]}],
                 order: [[Veiculo,'idCliente','ASC']]
             });
             res.status(200).send(agendamentos)
@@ -78,7 +78,7 @@ exports.findByOficinaOrder = async function(req, res){
             const agendamentos = await Agendamento.findAll({
                 where: { idOficina: req.params.idOficina},
                 attributes: ['id','data_hora'],
-                include: [ { model: Veiculo } ],
+                include: [ { model: Veiculo , include:[Cliente]}],
                 order: [['data_hora','ASC']]
             });
             res.status(200).send(agendamentos)
@@ -86,7 +86,7 @@ exports.findByOficinaOrder = async function(req, res){
             const agendamentos = await Agendamento.findAll({
                 where: { idOficina: req.params.idOficina},
                 attributes: ['id','data_hora'],
-                include: [ { model: Veiculo } ],
+                include: [ { model: Veiculo , include:[Cliente]} ],
                 order: [[Veiculo,'modelo','ASC']]
             });
             res.status(200).send(agendamentos)
@@ -97,4 +97,4 @@ exports.findByOficinaOrder = async function(req, res){
     res.status(400).send(err);
     };
 }    
- 
+  
