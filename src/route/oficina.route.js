@@ -1,18 +1,19 @@
-module.exports = function(router) {
-	const Oficina = require("../controller/oficina.controller.js");
-	const verifyJWT = require("../config/user.auth.js");
+var express = require('express');
+var router = express.Router();
 
-	router.post("/create", Oficina.create);
+const Oficina = require("../controller/oficina.controller.js");
+const verifyJWT = require("../config/user.auth.js");
 
-	router.get("/:id", Oficina.findById);
+router.post('/create', Oficina.create);
 
-	router.put("/:id", verifyJWT, Oficina.update);
+router.put('/update/:id', verifyJWT, Oficina.update);
 
-	router.get("/cidade/:cidade", Oficina.getOficinaByCidade);
+router.get('/cidade/:cidade', Oficina.getOficinaByCidade);
 
-	router.get('/findAll', Oficina.findAll);
+router.get('/findAll', Oficina.findAll);
 
-	router.get('/geocode/:id', Oficina.getOficinaGeocodeById);
+router.get('/geocode/:id', Oficina.getOficinaGeocodeById);
 
-	return router;
-};
+router.get('/:id', Oficina.findById);
+
+module.exports = router;

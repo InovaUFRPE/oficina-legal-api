@@ -1,7 +1,9 @@
-module.exports = function(router) {
-	const MecanicoOS = require("../controller/mecanicoOS.controller.js");
+var express = require('express');
+var router = express.Router();
 
-	router.post("/add", MecanicoOS.create);
 
-	return router;
-};
+const MecanicoOS = require("../controller/mecanicoos.controller.js");
+
+router.post('/add', MecanicoOS.create);
+
+module.exports = router;

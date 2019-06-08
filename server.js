@@ -1,18 +1,18 @@
 const express = require("express");
-const router = express.Router();
-const cors = require("cors");
-const cliente = require("./src/route/cliente.route.js")(router);
-const usuario = require("./src/route/usuario.route.js")(router);
-const mecanico = require("./src/route/mecanico.route.js")(router);
-const oficina = require("./src/route/oficina.route.js")(router);
-const laudo = require("./src/route/laudo.route.js")(router);
-const os = require("./src/route/os.route.js")(router);
-const certificado = require("./src/route/certificado.route.js")(router);
-const mecanicoOS = require("./src/route/mecanicoOS.route.js")(router);
-const veiculo = require("./src/route/veiculo.route.js")(router);
-const gestor = require("./src/route/gestor.route.js")(router);
-const agendamento = require("./src/route/agendamento.route.js")(router);
 
+const cors = require("cors");
+
+const agendamento = require("./src/route/agendamento.route.js");
+const certificado = require("./src/route/certificado.route.js");
+const cliente = require("./src/route/cliente.route.js");
+const gestor = require("./src/route/gestor.route.js");
+const laudo = require("./src/route/laudo.route.js");
+const mecanico = require("./src/route/mecanico.route.js");
+const mecanicoOS = require("./src/route/mecanicoOS.route.js");
+const oficina = require("./src/route/oficina.route.js");
+const os = require("./src/route/os.route.js");
+const usuario = require("./src/route/usuario.route.js");
+const veiculo = require("./src/route/veiculo.route.js");
 
 var app = express();
 var bodyParser = require("body-parser");
@@ -28,17 +28,17 @@ app.use(
 		origin: "*"
 	})
 );
-app.use("/api/cliente", cliente);
-app.use("/api/mecanico", mecanico);
-app.use("/api/oficina", oficina);
-app.use("/api/usuario", usuario);
-app.use("/api/laudo", laudo);
-app.use("/api/os", os);
-app.use("/api/certificado", certificado);
-app.use("/api/mecanicoOS", mecanicoOS);
-app.use('/api/veiculo', veiculo);
-app.use('/api/gestor', gestor);
 app.use("/api/agendamento", agendamento);
+app.use("/api/certificado", certificado);
+app.use("/api/cliente", cliente);
+app.use("/api/gestor", gestor);
+app.use("/api/laudo", laudo);
+app.use("/api/mecanico", mecanico);
+app.use("/api/mecanicoOS", mecanicoOS);
+app.use("/api/oficina", oficina);
+app.use("/api/os", os);
+app.use("/api/usuario", usuario);
+app.use("/api/veiculo", veiculo);
 
 
-app.listen(3306);
+app.listen(6001);

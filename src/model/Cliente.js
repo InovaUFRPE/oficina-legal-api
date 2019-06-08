@@ -6,26 +6,26 @@ module.exports = (sequelize, Sequelize) => {
 			primaryKey: true
 		},
 		nome: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(45),
 		},
 		cpf: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(11),
 		},
 		bairro: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(20)
 		},
 		cep: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(8),
 		},
 		endereco: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(45),
 		},
 		complemento: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(20)
 		},
 		idUsuario: {
 			type: Sequelize.INTEGER,
-			foreignKey: true
+			foreignKey: true,
 		}
 	},
 	{

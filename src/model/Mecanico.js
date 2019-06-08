@@ -6,21 +6,21 @@ module.exports = (sequelize, Sequelize) => {
 			primaryKey: true
 		},
 		curriculo: {
-			type: Sequelize.STRING
+			type: Sequelize.TEXT,
 		},
 		nome: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(45),
 		},
 		cpf: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING(11),
 		},
 		idUsuario: {
 			type: Sequelize.INTEGER,
-			foreignKey: true
+			foreignKey: true,
 		},
 		idOficina: {
 			type: Sequelize.INTEGER,
-			foreignKey: true
+			foreignKey: true,
 		}
 	},
 	{

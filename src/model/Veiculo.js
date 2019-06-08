@@ -13,7 +13,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING(7)
         },
         idCliente:{
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            validate: {
+                allowNull: false
+              }
         }
     },{
         freezeTableName: true,

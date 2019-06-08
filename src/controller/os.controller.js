@@ -18,7 +18,7 @@ exports.findById = async function(req, res) {
 		if (os){
 			res.status(200).send(os);
 		}
-		res.status(400).send("OS não encontrada");
+		res.status(404).send({ alert : "OS não encontrada."});
 	} catch (err) {
 		res.status(500).send(err);
 	}

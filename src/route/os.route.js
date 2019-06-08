@@ -1,10 +1,11 @@
-module.exports = function(router) {
-	const Os = require("../controller/os.controller.js");
-	const verifyJWT = require("../config/user.auth.js");
+var express = require('express');
+var router = express.Router();
 
-	router.post("/create", verifyJWT, Os.create);
+const Os = require("../controller/os.controller.js");
+const verifyJWT = require("../config/user.auth.js");
 
-	router.get("/:id", Os.findById);
+router.post('/create', verifyJWT, Os.create);
 
-	return router;
-};
+router.get('/:id', Os.findById);
+
+module.exports = router;

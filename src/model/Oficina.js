@@ -1,7 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
     const Oficina = sequelize.define('Oficina',{
         razaoSocial: {
-            type: Sequelize.STRING(45)
+            type: Sequelize.STRING(45),
+            validate: {
+                allowNull: false
+              }
         },
         endereco: {
             type: Sequelize.STRING(45)

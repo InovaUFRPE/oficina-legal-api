@@ -1,4 +1,4 @@
-  module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, Sequelize) => {
 	const usuario = sequelize.define('usuario', {
 	  login: {
 		type: Sequelize.STRING(45)
@@ -6,17 +6,18 @@
 	  senha: {
 		type: Sequelize.STRING(45)
 		},
-		email: {
+	email: {
 		type: Sequelize.STRING(45)
-		},
-		ativo: {
-		type: Sequelize.BOOLEAN
-		},
-		idUsuario: {
+	},
+	ativo: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false 
+	},
+	idUsuario: {
 		type: Sequelize.INTEGER,
 		primaryKey: true,
 		autoIncrement: true
-		}
+	}
 
 	},
 	{	

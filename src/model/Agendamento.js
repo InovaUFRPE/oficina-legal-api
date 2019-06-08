@@ -1,27 +1,24 @@
 module.exports = (sequelize, Sequelize) => {
     const Agendamento = sequelize.define("Agendamento",{
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
+      
+        data_hora:{
+            type: Sequelize.DATE
         },
-        data_hora: {
-            type: Sequelize.DATE,
-            defaultValue: Sequelize.NOW
-        },
-        idOficina: {
+        idVeiculo:{
             type: Sequelize.INTEGER,
-            foreignKey: true
+            foreignkey: true,
         },
-        idVeiculo: {
+        idOficina:{
             type: Sequelize.INTEGER,
-            foreignKey: true
+            foreignkey: true,
         }
+
     },
     {
-        freezeTableName: true,
-        tablename: "Agendamento",
-        timestamps: false
+    freezeTableName: true,
+    tablename: "Agendamento",
+    timestamps: false
     });
+
     return Agendamento;
 };

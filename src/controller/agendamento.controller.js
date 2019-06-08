@@ -1,4 +1,5 @@
-const db = require("../config/db.config.js");
+const db = require('../config/db.config.js');
+
 const Agendamento = db.agendamento;
 const Oficina = db.oficina;
 const Veiculo = db.veiculo;
@@ -36,9 +37,17 @@ exports.findByOficina = async function(req, res){
         if (agendamentos){
             res.status(200).send(agendamentos);
         } else {
-            res.status(200).send("Sem agendamentos.");
+            res.status(200).send({ alert: "Sem agendamentos." });
         }
     } catch (err) {
 		res.status(400).send(err);
 	};
+}
+
+exports.findAll = (req, res) => {
+    agendamento.findAll({
+    }).then(agendamento =>{
+        res.status(201)
+        res.send(agendamento)
+    })
 }

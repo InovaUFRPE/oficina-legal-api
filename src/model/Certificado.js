@@ -6,14 +6,14 @@ module.exports = (sequelize, Sequelize) => {
 			primaryKey: true
 		},
 		descricao: {
-			type: Sequelize.STRING
+			type: Sequelize.TEXT,
 		},
 		url: {
-			type: Sequelize.STRING
+			type: Sequelize.TEXT
 		},
 		idMecanico: {
 			type: Sequelize.INTEGER,
-			foreignKey: true
+			foreignKey: true,
 		}
 	},
 	{

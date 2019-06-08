@@ -1,9 +1,12 @@
-module.exports = function(router) {
-	const Agendamento = require("../controller/agendamento.controller.js");
+var express = require('express');
+var router = express.Router();
 
-	router.post("/agen/create", Agendamento.create);
+const agendamento = require("../controller/agendamento.controller")
 
-	router.get("/agen/:idOficina", Agendamento.findByOficina);
+router.post('/create', agendamento.create);
 
-	return router;
-};
+router.get('/findAll', agendamento.findAll);
+
+router.get('/oficina/:idOficina', agendamento.findByOficina);
+
+module.exports = router;
