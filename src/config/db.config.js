@@ -37,10 +37,10 @@ db.veiculo.hasOne(db.agendamento,{foreignKey:"id"});
 db.agendamento.belongsTo(db.oficina,{foreignKey:"idVeiculo"});
 db.oficina.hasOne(db.veiculo,{foreignKey:"id"});
 
-db.cliente.hasOne(db.usuario, {foreignKey: "idUsuario"});
-db.mecanico.hasOne(db.usuario, {foreignKey: "idUsuario"});
-db.adm.hasOne(db.usuario, {foreignKey: "idUsuario"});
-db.gestor.hasOne(db.usuario, {foreignKey: "idUsuario"});
+db.cliente.belongsTo(db.usuario, {foreignKey: "idUsuario"});
+db.mecanico.belongsTo(db.usuario, {foreignKey: "idUsuario"});
+db.adm.belongsTo(db.usuario, {foreignKey: "idUsuario"});
+db.gestor.belongsTo(db.usuario, {foreignKey: "idUsuario"});
 
 db.veiculo.belongsTo(db.cliente, {foreignKey: "idCliente"});
 

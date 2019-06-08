@@ -32,7 +32,12 @@ exports.create = async function(req, res){
         const agendamentos = await Agendamento.findAll({
             where: { idOficina: req.params.idOficina},
             attributes: ['id','data_hora'],
-            include: [ { model: Veiculo } ]
+            include: [ { 
+                model: Veiculo,
+                include:[{
+                    model: Cliente
+                }]
+            }]
         });
         res.status(200).send(agendamentos)
         
