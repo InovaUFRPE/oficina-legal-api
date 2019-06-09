@@ -17,7 +17,22 @@ module.exports = (sequelize, Sequelize) => {
 		},
 		idOficina: {
 			type: Sequelize.INTEGER,
+			foreignKey: true,
 		},
+		idVeiculo: {
+			type: Sequelize.INTEGER,
+			foreignKey: true,
+		},
+		idServico: {
+			type: Sequelize.INTEGER,
+			foreignKey: true,
+		},
+		horaInicio: {
+			type: Sequelize.TIME,
+		},
+		horaFim: {
+			type: Sequelize.TIME,
+		}
 	},
 	{
 		freezeTableName: true,

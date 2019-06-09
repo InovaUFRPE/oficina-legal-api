@@ -126,8 +126,12 @@ exports.disable = async function(req, res, next) {
 };
 exports.active = async function(req, res, next) {
 	Usuario.update(
-		{ativo: 1},
-		{where: {idUsuario: req.params.id} }
+		{
+			ativo: 1
+		},
+		{
+			where: {
+				idUsuario: req.params.id} }
 	  )
 	  .then(function() {
 		return res.json({ alert : "O usuário foi ativado."})
