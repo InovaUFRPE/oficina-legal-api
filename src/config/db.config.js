@@ -53,5 +53,6 @@ db.laudo.belongsTo(db.veiculo, {foreignKey: "idVeiculo"});
 
 db.os.belongsTo(db.laudo, { foreignKey: "id" });
 db.os.belongsTo(db.oficina, { foreignKey: "id" });
+db.os.belongsTo(db.veiculo, { foreignKey: "id" });
 
 module.exports = db;

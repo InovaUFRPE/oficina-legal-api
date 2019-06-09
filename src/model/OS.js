@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
 			autoIncrement: true,
 			primaryKey: true
 		},
-		descricao: {
+		observacao: {
 			type: Sequelize.TEXT,
 		},
 		situacao: {

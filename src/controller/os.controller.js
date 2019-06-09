@@ -22,8 +22,9 @@ exports.findById = async function(req, res) {
 	} catch (err) {
 		res.status(500).send(err);
 	}
+}
 exports.update = async function(req, res) {
-	OS.update({
+	const os = await Os.update({
 		observacao: req.body.observacao,
 		situacao: req.body.situacao,
 		horaInicio: req.body.horaInicio,
@@ -37,7 +38,8 @@ exports.update = async function(req, res) {
 			id: req.params.id
 		}
 	});
-	res.status(201).send(OS);
-	}
-};
+	res.status(201).send(os);
+}
+	
+
 
