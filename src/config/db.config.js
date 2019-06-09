@@ -26,6 +26,7 @@ db.os = require("../model/os.js")(sequelize, Sequelize);
 db.veiculo = require("../model/Veiculo")(sequelize, Sequelize);
 db.gestor = require("../model/Gestor.js")(sequelize, Sequelize);
 db.agendamento = require("../model/Agendamento.js")(sequelize, Sequelize);
+db.servico = require("../model/Servico.js")(sequelize, Sequelize);
 
 
 db.oficina.hasOne(db.gestor,{foreignKey: "idOficina"});

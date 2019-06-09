@@ -13,6 +13,7 @@ const oficina = require("./src/route/oficina.route.js");
 const os = require("./src/route/os.route.js");
 const usuario = require("./src/route/usuario.route.js");
 const veiculo = require("./src/route/veiculo.route.js");
+const servico = require("./src/route/servico.route.js");
 
 var app = express();
 var bodyParser = require("body-parser");
@@ -39,5 +40,6 @@ app.use("/api/oficina", oficina);
 app.use("/api/os", os);
 app.use("/api/usuario", usuario);
 app.use("/api/veiculo", veiculo);
+app.use("/api/servico", servico);
 
 app.listen(6001);
