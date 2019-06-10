@@ -1,6 +1,6 @@
-var events = require("events");
-const env = require("../config/.env");
-var eventEmitter = new events.EventEmitter();
+const {env} = process;
+const events = require("events");
+const eventEmitter = new events.EventEmitter();
 const db = require("../config/db.config.js");
 const Oficina = db.oficina;
 const googleMapsClient = require("@google/maps").createClient({

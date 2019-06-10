@@ -1,7 +1,6 @@
 const db = require("../config/db.config.js");
 const Servico = db.servico;
 var jwt = require('jsonwebtoken');
-require("dotenv-safe").load();
 
 exports.create = async function(req, res) {
     const profileData = req.body;

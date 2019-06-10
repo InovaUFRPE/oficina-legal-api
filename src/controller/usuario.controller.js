@@ -6,8 +6,6 @@ const Mecanico = db.mecanico;
 const Gestor = db.gestor;
 const Adm = db.adm;
 const Oficina = db.oficina;
-require("dotenv-safe").load();
-
 
 exports.create = async function(req, res) {
 	const profileData = req.body;

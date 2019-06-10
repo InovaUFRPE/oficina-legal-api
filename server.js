@@ -29,6 +29,8 @@ app.use(
 		origin: "*"
 	})
 );
+
+app.use("/", (req, res) => {res.json(`API IS ONLINE ${Date.now().toString()}`)})
 app.use("/api/agendamento", agendamento);
 app.use("/api/certificado", certificado);
 app.use("/api/cliente", cliente);
@@ -42,4 +44,4 @@ app.use("/api/usuario", usuario);
 app.use("/api/veiculo", veiculo);
 app.use("/api/servico", servico);
 
-app.listen(6001);
+module.exports = app;
