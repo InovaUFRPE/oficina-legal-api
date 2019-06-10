@@ -22,21 +22,11 @@ exports.update = async function(req, res) {
         });
         res.status(201).send(servico);
 }
-exports.findById = async function(req, res) {
+exports.findByPk = async function(req, res) {
     const id = req.params.id;
     try {
-        const servico = await servico.findById({
-            where: {
-                id: id
-            }
-        });
-        if (servico) {
-            res.status(200).send(servico);
-        }
-        res.status(404).send({
-            alert: "Serviço não encontrado"
-        });
-        
+        const servico = await Servico.findByPk(id);
+        res.status(200).send(servico);
     } catch(err) {
         res.status(500).send(err);
     }

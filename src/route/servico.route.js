@@ -8,6 +8,6 @@ router.post("/register", servico.create);
 
 router.put("/update/:id", verifyJWT, servico.update);
 
-router.get("/:id", servico.findById);
+router.get("/:id", servico.findByPk);
 
 module.exports = router;
