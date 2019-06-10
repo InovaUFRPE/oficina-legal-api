@@ -44,6 +44,7 @@ db.adm.belongsTo(db.usuario, {foreignKey: "idUsuario"});
 db.gestor.belongsTo(db.usuario, {foreignKey: "idUsuario"});
 
 db.veiculo.belongsTo(db.cliente, {foreignKey: "idCliente"});
+db.oficina.hasOne(db.mecanico, {foreignKey: "idOficina"});
 
 db.mecanico.belongsTo(db.oficina, { foreignKey: "id" });
 db.mecanicoOS.hasOne(db.os, { foreignKey: "id" });
