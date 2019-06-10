@@ -14,6 +14,10 @@ router.get('/findAll', Oficina.findAll);
 
 router.get('/geocode/:id', Oficina.getOficinaGeocodeById);
 
+router.get("/nome/:nome/cidade/:cidade", Oficina.getOficinaByNome);
+
+router.get('/find/raio', Oficina.getOficinaInRaio);
+
 router.get('/:id', Oficina.findById);
 
 module.exports = router;
