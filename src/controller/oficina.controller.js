@@ -3,6 +3,8 @@ const events = require("events");
 const eventEmitter = new events.EventEmitter();
 const db = require("../config/db.config.js");
 const Oficina = db.oficina;
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 const googleMapsClient = require("@google/maps").createClient({
 	key: env.cloudApiKey
 });
@@ -139,14 +141,23 @@ exports.getOficinaByCidade = async function(req, res) {
 	}
 };
 
-exports.getOficinaByCidade = async function(req, res) {
+exports.getOficinaByNome = async function(req, res) {
+	const nome = req.params.nome;
 	const cidade = req.params.cidade;
 	try {
-		const oficina = await Oficina.findAll({ where: { cidade: cidade } });
+		const oficina = await Oficina.findAll({
+			where: { [Op.and]: 
+					{
+						razaoSocial: {[Op.like]: "%" + nome + "%"},
+						cidade: cidade
+					}
+				
+			}
+		});
 		if (oficina.length > 0) {
 			res.status(200).send(oficina);
 		} else {
-			res.status(400).send("Não há oficinas na sua região");
+			res.status(400).send("Sua busca não retornou resultados na sua cidade");
 		}
 	} catch (err) {
 		res.status(500).send(err);

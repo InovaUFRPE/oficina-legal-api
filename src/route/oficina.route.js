@@ -10,6 +10,8 @@ router.put('/update/:id', verifyJWT, Oficina.update);
 
 router.get('/cidade/:cidade', Oficina.getOficinaByCidade);
 
+router.get("/nome/:nome/cidade/:cidade", Oficina.getOficinaByNome);
+
 router.get('/findAll', Oficina.findAll);
 
 router.get('/geocode/:id', Oficina.getOficinaGeocodeById);
