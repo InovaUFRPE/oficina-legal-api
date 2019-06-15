@@ -22,5 +22,24 @@ exports.findById = async function(req, res) {
 	} catch (err) {
 		res.status(500).send(err);
 	}
-};
+}
+exports.update = async function(req, res) {
+	const os = await Os.update({
+		observacao: req.body.observacao,
+		situacao: req.body.situacao,
+		horaInicio: req.body.horaInicio,
+		horaFim: req.body.horaFim,
+		idLaudo: req.body.idLaudo,
+		idOficina: req.body.idOficina,
+		idVeiculo: req.body.idVeiculo,
+		idServico: req.body.idServico,
+	},{
+		where: {
+			id: req.params.id
+		}
+	});
+	res.status(201).send(os);
+}
+	
+
 

@@ -9,4 +9,6 @@ router.post('/add', verifyJWT, Veiculo.create);
 
 router.get('/:idVeiculo', Veiculo.findById);
 
+router.get('/:idCliente/veiculos', Veiculo.findAllByCliente);
+
 module.exports = router;

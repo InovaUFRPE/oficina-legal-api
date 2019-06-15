@@ -11,4 +11,6 @@ router.get('/:id' , Mecanico.findByPk);
 
 router.delete('/delete/:id', Mecanico.delete);
 
+router.get('/oficina/:idOficina', Mecanico.findAllMecanicoByOficina);
+
 module.exports = router;

@@ -8,4 +8,6 @@ router.post('/create', verifyJWT, Os.create);
 
 router.get('/:id', Os.findById);
 
+router.put('/update/:id', verifyJWT, Os.update);
+
 module.exports = router;

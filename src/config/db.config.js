@@ -1,10 +1,10 @@
-const env = require("./.env");
+const { env } = process;
 
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize(env.database, env.username, env.password, {
-	host: env.host,
-	port: env.port,
-	dialect: env.dialect,
+const sequelize = new Sequelize(env.DB_DATABASE, env.DB_USERNAME, env.DB_PASSWORD, {
+	host: env.DB_HOST,
+	port: env.DB_PORT,
+	dialect: env.DB_DIALECT,
 	operatorsAliases: false,
 	timezone: "-03:00"
 });
@@ -22,10 +22,11 @@ db.usuario = require("../model/Usuario.js")(sequelize, Sequelize);
 db.mecanico = require("../model/Mecanico.js")(sequelize, Sequelize);
 db.oficina = require("../model/Oficina.js")(sequelize, Sequelize);
 db.laudo = require("../model/Laudo.js")(sequelize, Sequelize);
-db.os = require("../model/os.js")(sequelize, Sequelize);
+db.os = require("../model/OS.js")(sequelize, Sequelize);
 db.veiculo = require("../model/Veiculo")(sequelize, Sequelize);
 db.gestor = require("../model/Gestor.js")(sequelize, Sequelize);
 db.agendamento = require("../model/Agendamento.js")(sequelize, Sequelize);
+db.servico = require("../model/Servico.js")(sequelize, Sequelize);
 
 
 db.oficina.hasOne(db.gestor,{foreignKey: "idOficina"});
@@ -43,6 +44,7 @@ db.adm.belongsTo(db.usuario, {foreignKey: "idUsuario"});
 db.gestor.belongsTo(db.usuario, {foreignKey: "idUsuario"});
 
 db.veiculo.belongsTo(db.cliente, {foreignKey: "idCliente"});
+db.oficina.hasOne(db.mecanico, {foreignKey: "idOficina"});
 
 db.mecanico.belongsTo(db.oficina, { foreignKey: "id" });
 db.mecanicoOS.hasOne(db.os, { foreignKey: "id" });
@@ -53,5 +55,8 @@ db.laudo.belongsTo(db.veiculo, {foreignKey: "idVeiculo"});
 
 db.os.belongsTo(db.laudo, { foreignKey: "id" });
 db.os.belongsTo(db.oficina, { foreignKey: "id" });
+db.os.belongsTo(db.veiculo, { foreignKey: "id" });
+
+db.servico.belongsTo(db.oficina, {foreignKey: "id"});
 
 module.exports = db;
