@@ -3,6 +3,8 @@ const env = require("../config/.env");
 var eventEmitter = new events.EventEmitter();
 const db = require("../config/db.config.js");
 const Oficina = db.oficina;
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 const googleMapsClient = require("@google/maps").createClient({
 	key: env.cloudApiKey
 });
@@ -99,6 +101,59 @@ exports.getOficinaByCidade = async function(req, res) {
 			res.status(200).send(oficina);
 		} else {
 			res.status(400).send("Não há oficinas na sua região");
+		}
+	} catch (err) {
+		res.status(500).send(err);
+	}
+};
+
+exports. getOficinaInRaio = async function(req, res) {
+	try {
+	const kmInLatLng = 0.008983;
+	const userLat = req.body.lat
+	const userLng = req.body.lng
+	const radius = req.body.raio
+	const latDownRange = userLat - (radius * kmInLatLng);
+	const latUpRange = userLat + (radius * kmInLatLng);
+	const lngDownRange = userLng - (radius * kmInLatLng);
+	const lngUpRange = userLng + (radius * kmInLatLng);
+		const oficina = await Oficina.findAll({
+			where: { [Op.and]: 
+					{
+						latitude: {[Op.between]: [latDownRange, latUpRange]},
+						longitude: {[Op.between]: [lngDownRange, lngUpRange]}
+					}
+				
+			}
+		});
+		if (oficina.length > 0) {
+			res.status(200).send(oficina);
+		} else {
+			res.status(400).send("Sua busca não retornou resultados no seu raio");
+		}
+	} catch (err) {
+		console.log(err)
+		res.status(500).send(err);
+	}
+}
+
+exports.getOficinaByNome = async function(req, res) {
+	const nome = req.params.nome;
+	const cidade = req.params.cidade;
+	try {
+		const oficina = await Oficina.findAll({
+			where: { [Op.and]: 
+					{
+						razaoSocial: {[Op.like]: "%" + nome + "%"},
+						cidade: cidade
+					}
+				
+			}
+		});
+		if (oficina.length > 0) {
+			res.status(200).send(oficina);
+		} else {
+			res.status(400).send("Sua busca não retornou resultados na sua cidade");
 		}
 	} catch (err) {
 		res.status(500).send(err);
