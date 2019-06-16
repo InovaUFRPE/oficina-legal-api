@@ -40,6 +40,6 @@ exports.update = async function(req, res) {
 	});
 	res.status(201).send(os);
 }
-	
+
 
 
