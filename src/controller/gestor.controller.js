@@ -34,11 +34,23 @@ exports.create = (req, res) => {
     });
 }; 
 
-exports.findByPk = (req, res) => {
-    Gestor.findByPk(req.params.id).then(gestor => {
-        res.status(200)
-        res.send(gestor)
-    })
+exports.findByPk = async (req, res) => {
+    // Gestor.findByPk(req.params.id).then(gestor => {
+    //     res.status(200)
+    //     res.send(gestor)
+    // })
+    const gestor = await Gestor.findOne({
+        attributes: ['nome', 'cpf', 'id'],
+        where: { id : req.params.id },
+        include: [ { 
+            model: Usuario,
+            required: true
+        }, {
+            model: Oficina,
+             required: true
+        }, ]
+    });
+    return res.status(200).send(gestor);
 };
 
 // Update Gestor
