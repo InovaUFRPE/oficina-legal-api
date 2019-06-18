@@ -27,7 +27,8 @@ db.veiculo = require("../model/Veiculo")(sequelize, Sequelize);
 db.gestor = require("../model/Gestor.js")(sequelize, Sequelize);
 db.agendamento = require("../model/Agendamento.js")(sequelize, Sequelize);
 db.servico = require("../model/Servico.js")(sequelize, Sequelize);
-
+db.especializacao = require("../model/Especializacao.js")(sequelize, Sequelize);
+db.especializacaooficina = require("../model/EspecializacaoOficina.js")(sequelize, Sequelize);
 
 db.oficina.hasOne(db.gestor,{foreignKey: "idOficina"});
 db.gestor.belongsTo(db.oficina,{foreignKey: "idOficina"});
@@ -59,4 +60,6 @@ db.os.belongsTo(db.veiculo, { foreignKey: "id" });
 
 db.servico.belongsTo(db.oficina, {foreignKey: "id"});
 
+db.especializacaooficina.belongsTo(db.oficina, {foreignKey: "id"});
+db.especializacaooficina.belongsTo(db.especializacao, {foreignKey: "id"});
 module.exports = db;

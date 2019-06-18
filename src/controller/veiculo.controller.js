@@ -22,7 +22,7 @@ exports.findById = async (req, res) => {
 };
 exports.findAllByCliente = async (req, res) => {
     try {
-        const veiculos = await Veiculos.findAll({
+        const veiculos = await Veiculo.findAll({
             where: { idCliente: req.params.idCliente},
             attributes: ['id','modelo','ano','renavam','placa']
         });
