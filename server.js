@@ -33,7 +33,7 @@ app.use(
 	})
 );
 
-//app.use("/", (req, res) => {res.json(`API IS ONLINE ${Date.now().toString()}`)})
+// app.use("/", (req, res) => {res.json(`API IS ONLINE ${Date.now().toString()}`)})
 app.use("/api/agendamento", agendamento);
 app.use("/api/certificado", certificado);
 app.use("/api/cliente", cliente);

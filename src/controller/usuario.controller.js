@@ -161,10 +161,10 @@ exports.getGestorOrAdm = async function(req, res){
 			});
 			if (adm){
 				adm.usuario.tipo = "04";
-				return res.status(200).send({adm});
+				return res.status(200).send(adm);
 			} return res.status(404).send({alert: "Não encontrado."});
 		} 
-		return res.status(200).send({tipo: "03", gestor});
+		return res.status(200).send(gestor);
 	} catch (err) {
 		console.log(err);
 		return res.status({error: err});
