@@ -60,13 +60,12 @@ exports.delete = async function(req, res) {
 		res.status(500).send(err);
 	}
 };
-exports.findAll = (req , res) => {
+exports.findByPk = (req , res) => {
     Mecanico.findAll({
+		where:{id: req.params.byId},
         attributes:["id","nome","cpf", "curriculo"],
         include:[{
             model:Usuario
-        },{
-            model:Oficina
         }]
     }).then(mecanicos => {
         res.send(mecanicos)
