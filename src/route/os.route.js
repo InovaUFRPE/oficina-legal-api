@@ -10,5 +10,6 @@ router.get('/:id', Os.findById);
 
 router.put('/update/:id', verifyJWT, Os.update);
 
+router.get('/oficina/:idOficina', Os.findAllByOficina);
 
 module.exports = router;

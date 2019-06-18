@@ -20,6 +20,7 @@ db.cliente = require("../model/Cliente.js")(sequelize, Sequelize);
 db.mecanicoOS = require("../model/MecanicoOS.js")(sequelize, Sequelize);
 db.usuario = require("../model/Usuario.js")(sequelize, Sequelize);
 db.mecanico = require("../model/Mecanico.js")(sequelize, Sequelize);
+db.mecanicoOficina = require("../model/MecanicoOficina.js")(sequelize, Sequelize);
 db.oficina = require("../model/Oficina.js")(sequelize, Sequelize);
 db.laudo = require("../model/Laudo.js")(sequelize, Sequelize);
 db.os = require("../model/OS.js")(sequelize, Sequelize);
@@ -47,6 +48,12 @@ db.gestor.belongsTo(db.usuario, {foreignKey: "idUsuario"});
 db.veiculo.belongsTo(db.cliente, {foreignKey: "idCliente"});
 db.oficina.hasOne(db.mecanico, {foreignKey: "idOficina"});
 
+db.mecanicoOficina.hasOne(db.mecanico, {foreignKey: "idMecanico"});
+db.mecanicoOficina.belongsTo(db.oficina, {foreignKey: "idOficina"});
+
+db.mecanico.belongsTo(db.mecanicoOficina, {foreignKey: "idMecanico"});
+db.oficina.hasOne(db.mecanicoOficina, {foreignKey: "idOficina"});
+
 db.mecanico.belongsTo(db.oficina, { foreignKey: "id" });
 db.mecanicoOS.hasOne(db.os, { foreignKey: "id" });
 db.mecanicoOS.hasOne(db.mecanico, { foreignKey: "id" });
@@ -54,9 +61,13 @@ db.certificado.hasOne(db.mecanico, { foreignKey: "id" });
 
 db.laudo.belongsTo(db.veiculo, {foreignKey: "idVeiculo"});
 
-db.os.belongsTo(db.laudo, { foreignKey: "id" });
+db.laudo.hasMany(db.os, { foreignKey: "idLaudo" });
+db.os.belongsTo(db.laudo, { foreignKey: "idLaudo" });
+
 db.os.belongsTo(db.oficina, { foreignKey: "id" });
-db.os.belongsTo(db.veiculo, { foreignKey: "id" });
+
+db.veiculo.hasMany(db.os, { foreignKey: "idVeiculo" });
+db.os.belongsTo(db.veiculo, { foreignKey: "idVeiculo" });
 
 db.servico.belongsTo(db.oficina, {foreignKey: "id"});
 
