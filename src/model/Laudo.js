@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
 		descricao: {
 			type: Sequelize.TEXT
 		},
-		data_hora: {
+		dataHora: {
 			type: Sequelize.DATE,
 			defaultValue: Sequelize.NOW
 		},

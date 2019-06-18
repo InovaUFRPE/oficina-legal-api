@@ -17,10 +17,6 @@ module.exports = (sequelize, Sequelize) => {
 		idUsuario: {
 			type: Sequelize.INTEGER,
 			foreignKey: true,
-		},
-		idOficina: {
-			type: Sequelize.INTEGER,
-			foreignKey: true,
 		}
 	},
 	{
