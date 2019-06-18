@@ -5,4 +5,8 @@ const EspecializacaoOficina = require("../controller/especializacaooficina.contr
 
 router.post('/create', EspecializacaoOficina.create);
 
+router.get('/findByEspecializacao/:idEspecializacao', EspecializacaoOficina.findAllByEspecializacao);
+
+router.get('/findByOficina/:idOficina', EspecializacaoOficina.findAllByOficina);
+
 module.exports = router;

@@ -27,6 +27,27 @@ exports.create = async function(req,res) {
     } catch(err) {
         res.status(400).send(err);
     };
+}
+exports.findAllByEspecializacao = async function(req, res) {
+    try {
+        const listaEspecializacoes =  await EspecializacaoOficina.findAll({
+            where: {idEspecializacao: req.params.idEspecializacao},
+            include: [{model: Oficina}, {model: Especializacao}]
+        });
+        res.status(201).send(listaEspecializacoes);
+    } catch(err){
+        res.status(500).send(err);
+    }
+}
+exports.findAllByOficina = async function(req, res) {
+    try {
+        const listaEspecializacoes =  await EspecializacaoOficina.findAll({
+            where: {idOficina: req.params.idOficina},
+            include: [{model: Oficina}, {model: Especializacao}]
+        });
+        res.status(201).send(listaEspecializacoes);
+    } catch(err){
+        res.status(500).send(err);
+    }
 };
-
 

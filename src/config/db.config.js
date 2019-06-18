@@ -51,8 +51,6 @@ db.oficina.hasOne(db.mecanico, {foreignKey: "idOficina"});
 db.mecanicoOficina.hasOne(db.mecanico, {foreignKey: "idMecanico"});
 db.mecanicoOficina.belongsTo(db.oficina, {foreignKey: "idOficina"});
 
-db.mecanico.belongsTo(db.mecanicoOficina, {foreignKey: "idMecanico"});
-db.oficina.hasOne(db.mecanicoOficina, {foreignKey: "idOficina"});
 
 db.mecanico.belongsTo(db.oficina, { foreignKey: "id" });
 db.mecanicoOS.hasOne(db.os, { foreignKey: "id" });
@@ -71,6 +69,6 @@ db.os.belongsTo(db.veiculo, { foreignKey: "idVeiculo" });
 
 db.servico.belongsTo(db.oficina, {foreignKey: "id"});
 
-db.especializacaooficina.belongsTo(db.oficina, {foreignKey: "id"});
-db.especializacaooficina.belongsTo(db.especializacao, {foreignKey: "id"});
+db.especializacaooficina.belongsTo(db.oficina, {foreignKey: "idOficina"});
+db.especializacaooficina.belongsTo(db.especializacao, {foreignKey: "idEspecializacao"});
 module.exports = db;
