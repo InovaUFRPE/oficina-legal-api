@@ -60,9 +60,13 @@ db.certificado.hasOne(db.mecanico, { foreignKey: "id" });
 
 db.laudo.belongsTo(db.veiculo, {foreignKey: "idVeiculo"});
 
-db.os.belongsTo(db.laudo, { foreignKey: "id" });
+db.laudo.hasMany(db.os, { foreignKey: "idLaudo" });
+db.os.belongsTo(db.laudo, { foreignKey: "idLaudo" });
+
 db.os.belongsTo(db.oficina, { foreignKey: "id" });
-db.os.belongsTo(db.veiculo, { foreignKey: "id" });
+
+db.veiculo.hasMany(db.os, { foreignKey: "idVeiculo" });
+db.os.belongsTo(db.veiculo, { foreignKey: "idVeiculo" });
 
 db.servico.belongsTo(db.oficina, {foreignKey: "id"});
 

@@ -1,5 +1,8 @@
 const db = require("../config/db.config.js");
 const Os = db.os;
+const Veiculo = db.veiculo;
+const Laudo = db.laudo;
+const Cliente = db.cliente;
 
 exports.create = async function(req, res) {
 	const profileData = req.body;
@@ -40,6 +43,16 @@ exports.update = async function(req, res) {
 	});
 	res.status(201).send(os);
 }
-
-
-
+exports.findAllByOficina = async function(req, res){
+	try{
+		const AllOs = await Os.findAll({
+			where: { idOficina: req.params.idOficina },
+			attributes: ["id","observacao","situacao","horaInicio","horaFim"],
+			include: [ { model: Veiculo, include:[Cliente]}, {model: Laudo}]
+		});
+		res.status(200).send(AllOs);
+	} catch(err){
+		console.log(err);
+		res.status(500).send(err);
+	}
+}
