@@ -1,7 +1,6 @@
 const db = require("../config/db.config.js");
 const Mecanico = db.mecanico;
 const Usuario = db.usuario;
-const Oficina = db.oficina;
 
 exports.create = async function(req, res) {
 	const profileData = req.body;
@@ -78,4 +77,4 @@ exports.findAllMecanicoByOficina = async function (req , res){
 		console.log(err);
 		res.status(500).send(err);
 	}
-}
+};
