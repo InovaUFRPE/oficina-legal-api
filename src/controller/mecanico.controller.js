@@ -34,7 +34,12 @@ exports.update = async function(req, res) {
 exports.findByPk = async function(req, res) {
 	const id = req.params.id;
 	try {
-		const mecanico = await Mecanico.findOne({where : {id: id}});
+		const mecanico = await Mecanico.findOne({
+			where:{id: req.params.byId},
+			attributes:["id","nome","cpf", "curriculo"],
+			include:[{
+				model:Usuario
+			}]});
 		if (mecanico){
 			res.status(200).send(mecanico);
 		}
@@ -59,17 +64,7 @@ exports.delete = async function(req, res) {
 		res.status(500).send(err);
 	}
 };
-exports.findByPk = (req , res) => {
-    Mecanico.findAll({
-		where:{id: req.params.byId},
-        attributes:["id","nome","cpf", "curriculo"],
-        include:[{
-            model:Usuario
-        }]
-    }).then(mecanicos => {
-        res.send(mecanicos)
-    });
-}
+
 exports.findAllMecanicoByOficina = async function (req , res){
     try{
 		const Allmecanico = await Mecanico.findAll({
