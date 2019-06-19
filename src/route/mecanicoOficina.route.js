@@ -5,7 +5,7 @@ const MecanicoOficina = require("../controller/mecanicoOficina.controller.js");
 
 router.post('/add', MecanicoOficina.create);
 
-router.get('/mecanicoOficina/findMecanicos', MecanicoOficina.findMecanicoOficina);
+router.get('/findMecanicos', MecanicoOficina.findMecanicoOficina);
 
 router.get('/findByOficina/:idOficina', MecanicoOficina.findAllByOficina);
 

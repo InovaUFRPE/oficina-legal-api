@@ -2,6 +2,7 @@ const db = require("../config/db.config.js");
 const MecanicoOficina = db.mecanicoOficina;
 const Oficina = db.oficina;
 const Mecanico = db.mecanico;
+const Usuario = db.usuario;
 
 exports.create = async function(req, res) {
 	const profileData = req.body;
@@ -31,7 +32,8 @@ exports.findAllByOficina = async function(req, res) {
     try {
         const listaMecanicos =  await MecanicoOficina.findAll({
             where: {idOficina: req.params.idOficina},
-            include: [{model: Oficina}, {model: Mecanico}]
+            attributes: ["idOficina"],
+            include: [{ model: Mecanico , include:[Usuario]}]
         });
         res.status(201).send(listaMecanicos);
     } catch(err){
