@@ -7,7 +7,7 @@ router.post('/create', Mecanico.create);
 
 router.put('/update/:id', Mecanico.update);
 
-router.get('/:byId', Mecanico.findAll);
+//router.get('/:byId', Mecanico.findAll);
 
 router.delete('/delete/:id', Mecanico.delete);
 

@@ -1,5 +1,7 @@
 const db = require("../config/db.config.js");
 const MecanicoOficina = db.mecanicoOficina;
+const Oficina = db.oficina;
+const Mecanico = db.mecanico;
 
 exports.create = async function(req, res) {
 	const profileData = req.body;
@@ -11,7 +13,7 @@ exports.create = async function(req, res) {
 	}
 };
 
-exports.findAll = async function(req, res) {
+exports.findMecanicoOficina = async function(req, res) {
     try{
         const mecanicos = await MecanicoOficina.findAll({
         });
@@ -25,3 +27,25 @@ exports.findAll = async function(req, res) {
         res.status(500).send(err)
     }
 }
+exports.findAllByOficina = async function(req, res) {
+    try {
+        const listaMecanicos =  await MecanicoOficina.findAll({
+            where: {idOficina: req.params.idOficina},
+            include: [{model: Oficina}, {model: Mecanico}]
+        });
+        res.status(201).send(listaMecanicos);
+    } catch(err){
+        res.status(500).send(err);
+    }
+}
+exports.findAllByMecanico = async function(req, res) {
+    try {
+        const listaMecanicos =  await MecanicoOficina.findAll({
+            where: {idMecanico: req.params.idMecanico},
+            include: [{model: Oficina}, {model: Mecanico}]
+        });
+        res.status(201).send(listaMecanicos);
+    } catch(err){
+        res.status(500).send(err);
+    }
+};
