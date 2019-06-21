@@ -4,15 +4,31 @@ const Oficina = db.oficina;
 const Mecanico = db.mecanico;
 const Usuario = db.usuario;
 
-exports.create = async function(req, res) {
-	const profileData = req.body;
-	try {
-		const Mecanicos = await MecanicoOficina.create(profileData);
-		res.status(200).send(Mecanicos);
-	} catch (err) {
-		res.status(500).send(err);
-	}
-};
+exports.create = async function(req,res) {
+    const profileData = req.body;
+    try {
+        const oficina = await Oficina.findOne({
+            where: {
+                id: req.body.idOficina
+            }
+        });
+        const mecanico = await Mecanico.findOne({
+            where: {
+                id: req.body.idMecanico
+            }
+        });
+        if (oficina && mecanico) {
+            const mecanicooficina = MecanicoOficina.create(profileData);
+            res.status(200).send("Associação realizada com sucesso");
+        } else if(!oficina) {
+            res.status(404).send("Oficina não encontrada");
+        } else if(!mecanico) {
+            res.status(404).send("Mecanico não encontrado");
+        }
+    } catch(err) {
+        res.status(500).send(err);
+    };
+}
 
 exports.findMecanicoOficina = async function(req, res) {
     try{
