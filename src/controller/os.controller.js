@@ -1,6 +1,7 @@
 const db = require("../config/db.config.js");
 const Os = db.os;
 const Veiculo = db.veiculo;
+const Servico = db.servico;
 const Laudo = db.laudo;
 const Cliente = db.cliente;
 
@@ -48,7 +49,8 @@ exports.findAllByOficina = async function(req, res){
 		const AllOs = await Os.findAll({
 			where: { idOficina: req.params.idOficina },
 			attributes: ["id","observacao","situacao","horaInicio","horaFim"],
-			include: [ { model: Veiculo, include:[Cliente]}, {model: Laudo}]
+			include: [ { model: Veiculo, include:[Cliente]}, {model: Laudo}, 
+			{model: Servico, attributes: ["nomeServico","preco","tempoRealizacao"]}]
 		});
 		res.status(200).send(AllOs);
 	} catch(err){

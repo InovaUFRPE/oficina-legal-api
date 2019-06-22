@@ -47,11 +47,8 @@ db.gestor.belongsTo(db.usuario, {foreignKey: "idUsuario"});
 
 db.veiculo.belongsTo(db.cliente, {foreignKey: "idCliente"});
 
-
 db.mecanicoOficina.belongsTo(db.mecanico, {foreignKey: "idMecanico"});
 db.mecanicoOficina.belongsTo(db.oficina, {foreignKey: "idOficina"});
-
-
 
 db.mecanicoOS.hasOne(db.os, { foreignKey: "id" });
 db.mecanicoOS.hasOne(db.mecanico, { foreignKey: "id" });
@@ -61,6 +58,9 @@ db.laudo.belongsTo(db.veiculo, {foreignKey: "idVeiculo"});
 
 db.laudo.hasMany(db.os, { foreignKey: "idLaudo" });
 db.os.belongsTo(db.laudo, { foreignKey: "idLaudo" });
+
+db.servico.hasMany(db.os, { foreignKey: "idServico" });
+db.os.belongsTo(db.servico, { foreignKey: "idServico" });
 
 db.os.belongsTo(db.oficina, { foreignKey: "id" });
 
