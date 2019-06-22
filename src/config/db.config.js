@@ -50,7 +50,8 @@ db.veiculo.belongsTo(db.cliente, {foreignKey: "idCliente"});
 db.mecanicoOficina.belongsTo(db.mecanico, {foreignKey: "idMecanico"});
 db.mecanicoOficina.belongsTo(db.oficina, {foreignKey: "idOficina"});
 
-db.mecanicoOS.hasOne(db.os, { foreignKey: "id" });
+db.mecanicoOS.hasOne(db.os, { foreignKey: "id", as: "ordem"});
+
 db.mecanicoOS.hasOne(db.mecanico, { foreignKey: "id" });
 db.certificado.hasOne(db.mecanico, { foreignKey: "id" });
 

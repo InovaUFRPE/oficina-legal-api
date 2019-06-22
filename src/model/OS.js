@@ -32,6 +32,9 @@ module.exports = (sequelize, Sequelize) => {
 		},
 		horaFim: {
 			type: Sequelize.TIME,
+		},
+		dataRealizacao: {
+			type: Sequelize.TEXT,
 		}
 	},
 	{
