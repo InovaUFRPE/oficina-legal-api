@@ -170,3 +170,20 @@ exports.getGestorOrAdm = async function(req, res){
 		return res.status({error: err});
 	}
 }
+
+exports.findByPk = async (req, res) => {
+	const user = await Usuario.findByPk(req.params.id)
+	const id = user.idUsuario;
+    var token = jwt.sign({ id }, process.env.SECRET, {
+      expiresIn: 86400 // tempo em segundos (1 dia)
+    });
+    res.status(200).send({ 
+		auth: true,
+		token: token, 
+		user: {
+			id: user.idUsuario,
+			login: user.login, 
+			email: user.email
+		} 
+	});
+}

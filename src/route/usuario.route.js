@@ -13,4 +13,6 @@ router.put('/disable/:id', Usuario.disable);
 
 router.put('/update/:idUsuario', Usuario.update);
 
+router.get('/:id', Usuario.findByPk)
+
 module.exports = router;
