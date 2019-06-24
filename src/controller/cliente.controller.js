@@ -30,7 +30,7 @@ exports.findByPk = (req, res) => {
 };
 
 exports.findByIdUsuario = async (req, res) => {
-	const idUsuario = req.body.idUsuario;
+	const idUsuario = req.params.idUsuario;
 	const cliente = await Cliente.findOne({ where: { idUsuario: idUsuario } });
 	if (cliente) {
 		return res.status(201).send(cliente);

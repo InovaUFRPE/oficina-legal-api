@@ -9,6 +9,8 @@ router.get('/findAll', cliente.findAll);
 
 router.get("/:clienteId", cliente.findByPk);
 
+router.get("/findByIdUsuario/:idUsuario", cliente.findByIdUsuario);
+
 /*router.post('/api/cliente', cliente.findOficina);*/
 
 router.get('/:idCliente/veiculos', cliente.getVeiculosByCliente);
