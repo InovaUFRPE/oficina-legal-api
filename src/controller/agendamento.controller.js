@@ -60,7 +60,7 @@ exports.findAll = async function(req, res) {
                 where: { idOficina: req.params.idOficina},
                 attributes: ['id','data_hora'],
                 include: [ { model: Veiculo , include:[Cliente]}],
-                order: [['data_hora','ASC']]
+                order: [['data_hora','DESC']]
             });
             res.status(200).send(agendamentos)
         }else if(ordem == "modelo"){
