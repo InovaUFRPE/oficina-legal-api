@@ -21,6 +21,17 @@ exports.update = async function(req, res) {
         });
         res.status(201).send(servico);
 }
+exports.findAll = async function(req, res){
+    idOficina = req.params.id
+	try{
+		if(idOficina){
+            const servicos = await Servico.findAll({where: {idOficina: idOficina}});
+			res.status(200).send(servicos)
+		}
+	}catch(err){
+		res.status(400).send(err)
+	}
+}
 exports.findByPk = async function(req, res) {
     const id = req.params.id;
     try {

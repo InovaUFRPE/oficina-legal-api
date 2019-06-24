@@ -90,7 +90,7 @@ exports.update = async function(req, res) {
 
 exports.findAll2 = async function(req, res) {
     try{
-        const  oficinas = await Oficina.findAll({
+        const oficinas = await Oficina.findAll({
         });
         if (oficinas){
             res.status(200).send(oficinas);

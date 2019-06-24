@@ -84,6 +84,7 @@ exports.create = async function(req, res) {
     const dataEhora = req.body.dataHora; // dataEhora -> "AAAA/MM/DD HH:MM:SS"
     const idServico = req.body.idServico;
     const idVeiculo = req.body.idVeiculo;
+    const obs = req.body.observacao;
     var idMecanico;
     var disponivel;
     // gerar intervalo de tempo do agendamento
@@ -150,7 +151,7 @@ exports.create = async function(req, res) {
             }) 
             if (agendamento){
                 const ordemServico = await OS.create({
-                    observacao: "horário agendado",
+                    observacao: obs,
                     situacao: "agendado",
                     horaInicio: agendamentoHI,
                     horaFim: agendamentoHF,

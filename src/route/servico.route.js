@@ -10,4 +10,6 @@ router.put("/update/:id", verifyJWT, servico.update);
 
 router.get("/:id", servico.findByPk);
 
+router.get("/oficina/:id", servico.findAll)
+
 module.exports = router;

@@ -27,6 +27,7 @@ exports.login = async function(req, res) {
 	const email = req.body.email;
 	const senha = req.body.senha;
 	var user;
+	console.log(req.body)
 	if(login){
 		user = await Usuario.findOne({
 			where: { login: login }
@@ -135,6 +136,23 @@ exports.active = async function(req, res, next) {
 		return res.json({ alert : "O usuário foi ativado."})
 	  })
 	  .catch(next)
+};
+
+exports.findByPk = async (req, res) => {
+	const user = await Usuario.findByPk(req.params.id)
+	const id = user.idUsuario;
+    var token = jwt.sign({ id }, process.env.SECRET, {
+      expiresIn: 86400 // tempo em segundos (1 dia)
+    });
+    res.status(200).send({ 
+		auth: true,
+		token: token, 
+		user: {
+			id: user.idUsuario,
+			login: user.login, 
+			email: user.email
+		} 
+	});
 };
 
 exports.getGestorOrAdm = async function(req, res){

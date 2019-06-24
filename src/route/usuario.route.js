@@ -7,6 +7,8 @@ router.post('/create', Usuario.create);
 
 router.post('/login', Usuario.login);
 
+router.get('/:id', Usuario.findByPk)
+
 router.get('/admin/:id', Usuario.getGestorOrAdm);
 
 router.put('/disable/:id', Usuario.disable); 

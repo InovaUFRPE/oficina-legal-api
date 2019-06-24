@@ -14,9 +14,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         idCliente:{
             type: Sequelize.INTEGER,
-            validate: {
-                allowNull: false
-              }
+            allowNull: false     
         }
     },{
         freezeTableName: true,

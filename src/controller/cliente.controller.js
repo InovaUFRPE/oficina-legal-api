@@ -8,7 +8,7 @@ exports.create = async function(req, res) {
 
 	try {
 		const usuario = await Usuario.create(profileData);
-		Cliente.create({
+		const cliente = await Cliente.create({
 			nome: req.body.nome,
 			cpf: req.body.cpf,
 			bairro: req.body.bairro,
@@ -17,7 +17,7 @@ exports.create = async function(req, res) {
 			complemento: req.body.complemento,
 			idUsuario: usuario.idUsuario
 		});
-		res.status(201).send(Cliente);
+		res.status(201).send(cliente);
 	} catch (err) {
 		console.log(err);
 	}

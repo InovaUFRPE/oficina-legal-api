@@ -11,4 +11,6 @@ router.get('/:idVeiculo', Veiculo.findById);
 
 router.get('/:idCliente/veiculos', Veiculo.findAllByCliente);
 
+router.post('/findAll', Veiculo.findAll)
+
 module.exports = router;
