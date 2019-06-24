@@ -13,6 +13,7 @@ const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+db.op = Sequelize.Op;
 
 db.adm = require("../model/Adm.js")(sequelize, Sequelize);
 db.certificado = require("../model/Certificado.js")(sequelize, Sequelize);
