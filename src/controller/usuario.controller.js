@@ -188,3 +188,29 @@ exports.getGestorOrAdm = async function(req, res){
 		return res.status({error: err});
 	}
 }
+
+exports.findByPk = async (req, res) => {
+	try {
+		const user = await Usuario.findByPk(req.params.id)
+		if (user) {
+			const id = user.idUsuario;
+			var token = jwt.sign({ id }, process.env.SECRET, {
+				expiresIn: 86400 // tempo em segundos (1 dia)
+			});
+			return res.status(200).send({ 
+				auth: true,
+				token: token, 
+				user: {
+					id: user.idUsuario,
+					login: user.login, 
+					email: user.email
+				} 
+			});
+		}
+		return res.status(404).send({auth: false, alert: "Usuario não encontrado."}); 
+	} catch (error) {
+		console.log(error);
+		return res.status(500).send({auth: false, alert: error}); 
+	}
+	 
+}

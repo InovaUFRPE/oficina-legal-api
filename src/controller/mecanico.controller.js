@@ -31,6 +31,14 @@ exports.update = async function(req, res) {
 		res.status(500).send(err);
 	}
 };
+exports.findByIdUsuario = async (req, res) => {
+	const idUsuario = req.params.id;
+	const mecanico = await Mecanico.findOne({ where: { idUsuario: idUsuario } });
+	if (mecanico) {
+		return res.status(201).send(mecanico);
+	}
+	return res.status(400).send({ alert: "Mecânico não encontrado" });
+};
 exports.findByPk = async function(req, res) {
 	const id = req.params.id;
 	try {

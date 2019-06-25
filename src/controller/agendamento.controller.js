@@ -8,6 +8,8 @@ const MecanicoOficina = db.mecanicoOficina;
 const MecanicoOS = db.mecanicoOS;
 const OS = db.os;
 
+const Op = db.op;
+
 exports.findByOficina = async function(req, res){
     try {
         const agendamentos = await Agendamento.findAll({
@@ -100,6 +102,18 @@ exports.create = async function(req, res) {
         date.setMinutes(date.getMinutes() + parseInt(t[1]));
         const agendamentoHF = 
         `${(`0${date.getHours()}`).slice(-2)}:${(`0${date.getMinutes()}`).slice(-2)}:00`;
+        // verificando se já existe agendamento para o veículo
+        const agendamentos = await Agendamento.findAll({
+            where: {
+                idVeiculo: idVeiculo,
+                data_hora: {
+                    [Op.startsWith]: dataAgendada
+                }
+            }
+        });
+        if (!(agendamentos.length == 0)) {
+            return res.status(400).send("Já existe agendamento para o veículo neste dia.");
+        }
         // buscando mecanicos da Oficina
         const listaMecanicos = await MecanicoOficina.findAll({
             where: {idOficina : idOficina},
@@ -111,7 +125,6 @@ exports.create = async function(req, res) {
                 // buscando lista de OS por mecanico
                 disponivel = true;
                 idMecanico = listaMecanicos[mecanico].idMecanico;
-                console.log(idMecanico);
                 const listaOs = await MecanicoOS.findAll({
                     where: {idMecanico: idMecanico},
                     attributes: [],
@@ -124,13 +137,9 @@ exports.create = async function(req, res) {
                     },
                     raw: true
                 });
-                console.log(listaOs);
                 if (!(listaOs.length == 0)){
-                    console.log('entrou');
                     // verificando a disponibilidade de horario
                     for (o in listaOs){
-                        console.log(listaOs[o]['ordem.horaFim'], agendamentoHI);
-                        console.log(listaOs[o]['ordem.horaInicio'], agendamentoHF);
                         if (listaOs[o]['ordem.horaFim'] >= agendamentoHI && 
                             listaOs[o]['ordem.horaInicio'] <= agendamentoHF){
                                 disponivel = false;
@@ -144,35 +153,40 @@ exports.create = async function(req, res) {
             }
         }
         if (disponivel){
-            const agendamento = await Agendamento.create({
-                data_hora: dataEhora,
-                idOficina:  idOficina,
-                idVeiculo: idVeiculo,
-            }) 
-            if (agendamento){
-                const ordemServico = await OS.create({
-                    observacao: obs,
-                    situacao: "agendado",
-                    horaInicio: agendamentoHI,
-                    horaFim: agendamentoHF,
-                    idOficina: idOficina,
+            try {
+                const agendamento = await Agendamento.create({
+                    data_hora: dataEhora,
+                    idOficina:  idOficina,
                     idVeiculo: idVeiculo,
-                    idServico: idServico,
-                    dataRealizacao: dataAgendada,
-                });
-                if (ordemServico) {
-                    const mecanicoOS = await MecanicoOS.create({
-                        idOS: ordemServico.id,
-                        idMecanico: idMecanico,
+                }) 
+                if (agendamento){
+                    const ordemServico = await OS.create({
+                        observacao: obs,
+                        situacao: "agendado",
+                        horaInicio: agendamentoHI,
+                        horaFim: agendamentoHF,
+                        idOficina: idOficina,
+                        idVeiculo: idVeiculo,
+                        idServico: idServico,
+                        dataRealizacao: dataAgendada,
                     });
-                    if (mecanicoOS){
-                        res.status(201).send(agendamento);
+                    if (ordemServico) {
+                        const mecanicoOS = await MecanicoOS.create({
+                            idOS: ordemServico.id,
+                            idMecanico: idMecanico,
+                        });
+                        if (mecanicoOS){
+                            return res.status(201).send(agendamento);
+                        }
                     }
                 }
+            } catch (error) {
+                console.log(error);
+                return res.status(400).send({error: error});
             }
         }
-        res.status(400).send("Horário indisponível.");
+        return res.status(400).send("Horário indisponível.");
 
     }
-    res.status(404).send("Serviço não encontrado.");
+    return res.status(404).send("Serviço não encontrado.");
 }

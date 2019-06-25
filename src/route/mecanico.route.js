@@ -9,6 +9,8 @@ router.put('/update/:id', Mecanico.update);
 
 router.get('/:byId', Mecanico.findByPk);
 
+router.get('/find/user/:id', Mecanico.findByIdUsuario)
+
 router.delete('/delete/:id', Mecanico.delete);
 
 router.get('/oficina/:idOficina', Mecanico.findAllMecanicoByOficina);
