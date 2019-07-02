@@ -58,3 +58,18 @@ exports.findAllByOficina = async function(req, res){
 		res.status(500).send(err);
 	}
 }
+
+exports.findAllByVeiculo = async function(req, res){
+	try{
+		const AllOs = await Os.findAll({
+			where: { idVeiculo: req.params.idVeiculo },
+			attributes: ["id","observacao","situacao","horaInicio","horaFim"],
+			include: [ { model: Veiculo, include:[Cliente]}, {model: Laudo}, 
+			{model: Servico, attributes: ["nomeServico","preco","tempoRealizacao"]}]
+		});
+		res.status(200).send(AllOs);
+	} catch(err){
+		console.log(err);
+		res.status(500).send(err);
+	}
+}
